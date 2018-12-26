@@ -19,7 +19,6 @@ namespace MatchUp.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private PythagorianCalculator calculator;
 
         public AccountController()
         {
@@ -197,7 +196,7 @@ namespace MatchUp.Controllers
                 //Create matrix and save matrix id in user table
                 PythagorianMatrixService pythagorianService = new PythagorianMatrixService();
                 pythagorianService.CreateUserMatrix(user);
-                //pythagorianService.CreateUserSecondaryAbilities(user);
+                pythagorianService.CreateUserSecondaryAbilities(user);
 
                 var result = await UserManager.CreateAsync(user);
 

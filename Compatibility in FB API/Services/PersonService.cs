@@ -17,7 +17,7 @@ namespace MatchUp.Services
             context.SaveChanges();
 
             pythagorianService.CreateUserMatrix(model);
-            //pythagorianService.CreateUserSecondaryAbilities(model);
+            pythagorianService.CreateUserSecondaryAbilities(model);
         }
 
         public IEnumerable<UserViewModel> GetMyPerson(string userId)

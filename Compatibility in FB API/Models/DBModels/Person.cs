@@ -22,7 +22,7 @@ namespace MatchUp.Models.DBModels
         public int? MatrixId { get; set; }
         public virtual PythagorianMatrix Matrix { get; set; }
 
-        //public int? SecondaryAbilitiesId { get; set; }
-        //public virtual SecondaryAbilities SecondaryAbilities { get; set; }
+        public int? SecondaryAbilitiesId { get; set; }
+        public virtual SecondaryAbilities SecondaryAbilities { get; set; }
     }
 }

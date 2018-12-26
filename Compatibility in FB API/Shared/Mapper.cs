@@ -16,7 +16,7 @@ namespace MatchUp.Shared
                 Birthday = model.Birthday,
                 PhotoUrl = @"\Content\img\ava.png",
                 PythagorianMatrix = model.Matrix,
-                //SecondaryAbilities = model.SecondaryAbilities
+                SecondaryAbilities = model.SecondaryAbilities
             };
 
             return user;
@@ -32,7 +32,7 @@ namespace MatchUp.Shared
                 Details = person.Details,
                 PhotoUrl = $"../../HtmlFiles/{person.PhotoUrl.Replace("./", "")}",
                 PythagorianMatrix = person.Matrix,
-                //SecondaryAbilities = person.SecondaryAbilities
+                SecondaryAbilities = person.SecondaryAbilities
             };
 
             return user;
@@ -47,7 +47,7 @@ namespace MatchUp.Shared
                 Birthday = applicationUser.Birthday,
                 PythagorianMatrix = applicationUser.Matrix,
                 PhotoUrl = applicationUser.PhotoUrl,
-                //SecondaryAbilities = applicationUser.SecondaryAbilities
+                SecondaryAbilities = applicationUser.SecondaryAbilities
             };
 
             return user;

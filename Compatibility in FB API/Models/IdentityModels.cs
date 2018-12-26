@@ -23,8 +23,8 @@ namespace MatchUp.Models
         public int? MatrixId { get; set; }
         public virtual PythagorianMatrix Matrix { get; set; }
 
-        //public int? SecondaryAbilitiesId { get; set; }
-        //public virtual SecondaryAbilities SecondaryAbilities { get; set; }
+        public int? SecondaryAbilitiesId { get; set; }
+        public virtual SecondaryAbilities SecondaryAbilities { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -45,7 +45,7 @@ namespace MatchUp.Models
 
         public DbSet<PythagorianMatrix> PythagorianMatrices { get; set; }
 
-       // public DbSet<SecondaryAbilities> SecondaryAbilitieses { get; set; }
+        public DbSet<SecondaryAbilities> SecondaryAbilitieses { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

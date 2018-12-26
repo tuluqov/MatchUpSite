@@ -34,28 +34,28 @@ namespace MatchUp.Services
             }
         }
 
-        //public void CalcAllInTableSecond()
-        //{
-        //    var allStars = context.Stars.ToList();
+        public void CalcAllInTableSecond()
+        {
+            var allStars = context.Stars.ToList();
 
-        //    foreach (var star in allStars)
-        //    {
-        //        if (star.SecondaryAbilitiesId != null)
-        //        {
-        //            continue;
-        //        }
+            foreach (var star in allStars)
+            {
+                if (star.SecondaryAbilitiesId != null)
+                {
+                    continue;
+                }
 
-        //        var secondaryAbilities = calculator.CalculateSecondaryAbilities(star.Matrix);
+                var secondaryAbilities = calculator.CalculateSecondaryAbilities(star.Matrix);
 
-        //        context.SecondaryAbilitieses.Add(secondaryAbilities);
+                context.SecondaryAbilitieses.Add(secondaryAbilities);
 
-        //        context.SaveChanges();
+                context.SaveChanges();
 
-        //        star.SecondaryAbilitiesId = secondaryAbilities.Id;
+                star.SecondaryAbilitiesId = secondaryAbilities.Id;
 
-        //        context.SaveChanges();
-        //    }
-        //}
+                context.SaveChanges();
+            }
+        }
 
         public IEnumerable<UserViewModel> GetAll()
         {

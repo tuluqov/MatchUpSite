@@ -34,30 +34,30 @@ namespace MatchUp.Services
             context.SaveChanges();
         }
 
-        //public void CreateUserSecondaryAbilities(ApplicationUser user)
-        //{
-        //    var secondaryAbilities = calculator.CalculateSecondaryAbilities(user.Matrix);
+        public void CreateUserSecondaryAbilities(ApplicationUser user)
+        {
+            var secondaryAbilities = calculator.CalculateSecondaryAbilities(user.Matrix);
 
-        //    context.SecondaryAbilitieses.Add(secondaryAbilities);
+            context.SecondaryAbilitieses.Add(secondaryAbilities);
 
-        //    context.SaveChanges();
+            context.SaveChanges();
 
-        //    user.SecondaryAbilitiesId = secondaryAbilities.Id;
+            user.SecondaryAbilitiesId = secondaryAbilities.Id;
 
-        //    context.SaveChanges();
-        //}
+            context.SaveChanges();
+        }
 
-        //public void CreateUserSecondaryAbilities(Person person)
-        //{
-        //    var secondaryAbilities = calculator.CalculateSecondaryAbilities(person.Matrix);
+        public void CreateUserSecondaryAbilities(Person person)
+        {
+            var secondaryAbilities = calculator.CalculateSecondaryAbilities(person.Matrix);
 
-        //    context.SecondaryAbilitieses.Add(secondaryAbilities);
+            context.SecondaryAbilitieses.Add(secondaryAbilities);
 
-        //    context.SaveChanges();
+            context.SaveChanges();
 
-        //    person.SecondaryAbilitiesId = secondaryAbilities.Id;
+            person.SecondaryAbilitiesId = secondaryAbilities.Id;
 
-        //    context.SaveChanges();
-        //}
+            context.SaveChanges();
+        }
     }
 }

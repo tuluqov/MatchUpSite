@@ -201,6 +201,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812262149302_InitialCreate.cs" />
+    <Compile Include="Migrations\201812262149302_InitialCreate.Designer.cs">
+      <DependentUpon>201812262149302_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812262150593_Secondary.cs" />
+    <Compile Include="Migrations\201812262150593_Secondary.Designer.cs">
+      <DependentUpon>201812262150593_Secondary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CompareWithFamouseViewModel.cs" />
     <Compile Include="Models\CompatibilityViewModel.cs" />
@@ -328,6 +337,14 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812262149302_InitialCreate.resx">
+      <DependentUpon>201812262149302_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812262150593_Secondary.resx">
+      <DependentUpon>201812262150593_Secondary.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
