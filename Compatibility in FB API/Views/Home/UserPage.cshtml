@@ -1,0 +1,228 @@
+﻿@using MatchUp.Models
+@using MatchUp.Services
+@using MatchUp.Shared
+@model MatchUp.Models.UserViewModel
+@{
+    ViewBag.Title = "User";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row sticky-card p-2">
+        <div class="col-4 col-md-4">
+            <img src="@Model.PhotoUrl" class="round">
+        </div>
+        <div class="col-8 col-md-8 mt-3">
+            <h4>@Model.Name</h4>
+            <h4>@Model.Birthday.ToShortDateString()</h4>
+            @if (Request.QueryString["isFamouse"] == "true")
+            {
+                <h6>@Model.Details</h6>
+                <a href="@CommonService.CreateGoogleUrl(Model.Name)">Подробнее</a>
+            }
+        </div>
+    </div>
+
+    <div class="mt-5 pt-2 border-top">
+        <h2>Матрица даты рождения</h2>
+        <table class="table table-bordered text-center">
+            <tr>
+                <td>
+                    Характер
+                    <br />
+                    @Model.PythagorianMatrix.CharacterWill
+                </td>
+                <td>
+                    Здоровье
+                    <br />
+                    @Model.PythagorianMatrix.HealthBeauty
+                </td>
+                <td>
+                    Везение, удача
+                    <br />
+                    @Model.PythagorianMatrix.Luck
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Энергия
+                    <br />
+                    @Model.PythagorianMatrix.VitalEnergy
+                </td>
+                <td>
+                    Логика, интуиция
+                    <br />
+                    @Model.PythagorianMatrix.LogicIntuition
+                </td>
+                <td>
+                    Чувство долга
+                    <br />
+                    @Model.PythagorianMatrix.LaborSkill
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Интерес к наукам
+                    <br />
+                    @Model.PythagorianMatrix.CognitiveCreative
+                </td>
+                <td>
+                    Склонность к труду, власти
+                    <br />
+                    @Model.PythagorianMatrix.LaborSkill
+                </td>
+                <td>
+                    Ум, память
+                    <br />
+                    @Model.PythagorianMatrix.IntellectMemory
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Like most people</h2>
+    <div class="border-bottom mt-2 mb-3"></div>
+    <div class="row text-center align-content-center">
+
+        @if (Request.QueryString["isFamouse"] != "true")
+        {
+            foreach (UserViewModel famouse in Model.SameStars[0])
+            {
+                <div class="col">
+                    <a href="~/home/userpage/@famouse.Id?isFamouse=true">
+                        <img src="@famouse.PhotoUrl" class="round">
+                        <h6 class="mt-1">@famouse.Name</h6>
+                        <p class="text-black-50">@famouse.Details</p>
+                    </a>
+                </div>
+            }
+        }
+    </div>
+    <div class="mt-3"></div>
+
+    <h2>Strengths</h2>
+    @foreach (KeyValuePair<int, int> pair in Model.SquarePersent)
+    {
+        if (pair.Value >= 50)
+        {
+            <div class="row border-bottom mt-2 mb-2">
+                <div class="col-7">
+                    <h4>@Constants.NamesEn[pair.Key]</h4>
+                </div>
+                <div class="col-5">
+                    <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>@Model.Descriptions[pair.Key].Details</p>
+                </div>
+            </div>
+            if (Model.SameStars != null)
+            {
+                <div class="mt-2"></div>
+                <h6 class="mt-2">People with the same type:</h6>
+                <div class="row text-center align-content-center">
+
+                    @foreach (UserViewModel famouse in Model.SameStars[pair.Key])
+                    {
+                        <div class="col">
+                            <a href="~/home/userpage/@famouse.Id?isFamouse=true">
+                                <img src="@famouse.PhotoUrl" class="round">
+                                <h6 class="mt-1">@famouse.Name</h6>
+                                <p class="text-black-50">@famouse.Details</p>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="mt-5"></div>
+            }
+        }
+        else
+        {
+
+        }
+    }
+
+    <div class="mt-4"></div>
+
+    <h2>Weaknesses</h2>
+    @foreach (KeyValuePair<int, int> pair in Model.SquarePersent)
+    {
+        if (pair.Value < 50)
+        {
+            <div class="row border-bottom mt-2 mb-2">
+                <div class="col-7">
+                    <h4>@Constants.NamesEn[pair.Key]</h4>
+                </div>
+                <div class="col-5">
+                    <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>@Model.Descriptions[pair.Key].Details</p>
+                </div>
+            </div>
+
+            if (Model.SameStars != null)
+            {
+                <div class="mt-2"></div>
+                <h6 class="mt-2">People with the same type:</h6>
+                <div class="row text-center align-content-center">
+
+                    @foreach (UserViewModel famouse in Model.SameStars[pair.Key])
+                    {
+                        <div class="col">
+                            <a href="~/home/userpage/@famouse.Id?isFamouse=true">
+                                <img src="@famouse.PhotoUrl" class="round">
+                                <h6 class="mt-1">@famouse.Name</h6>
+                                <p class="text-black-50">@famouse.Details</p>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="mt-5"></div>
+            }
+
+            <div class="mt-5"></div>
+
+        }
+    }
+
+    @*<div class="mt-5 pt-2">
+            <h2>Дополнительная информация</h2>
+            <h4>Самооценка @Model.MoreInfoPersent["Самооценка"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Самооценка"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Работоспособность @Model.MoreInfoPersent["Работоспособность"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Работоспособность"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Талант @Model.MoreInfoPersent["Талант"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Талант"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Целеустремленность @Model.MoreInfoPersent["Целеустремленность"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Целеустремленность"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Семейность @Model.MoreInfoPersent["Семейность"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Семейность"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Привычки @Model.MoreInfoPersent["Привычки"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Привычки"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Темперамент @Model.MoreInfoPersent["Темперамент"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Темперамент"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <h4>Духовность @Model.MoreInfoPersent["Духовность"]%</h4>
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: @Model.MoreInfoPersent["Духовность"]%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>*@
+</div>

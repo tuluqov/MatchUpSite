@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchUp", "Compatibility in FB API\MatchUp.csproj", "{89A7CFEA-ECFE-46CF-9D0F-E2AE169B6DD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleParser", "PeopleParser\PeopleParser.csproj", "{FD63C112-CDF9-492B-B1B7-DC50CE676EA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89A7CFEA-ECFE-46CF-9D0F-E2AE169B6DD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A7CFEA-ECFE-46CF-9D0F-E2AE169B6DD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A7CFEA-ECFE-46CF-9D0F-E2AE169B6DD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A7CFEA-ECFE-46CF-9D0F-E2AE169B6DD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD63C112-CDF9-492B-B1B7-DC50CE676EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD63C112-CDF9-492B-B1B7-DC50CE676EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD63C112-CDF9-492B-B1B7-DC50CE676EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD63C112-CDF9-492B-B1B7-DC50CE676EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4441B3B3-749B-45A7-9198-9FB77AEF7A51}
+	EndGlobalSection
+EndGlobal

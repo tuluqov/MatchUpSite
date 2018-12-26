@@ -1,0 +1,63 @@
+﻿@using MatchUp.Services
+@using MatchUp.Shared
+@model MatchUp.Models.CompatibilityViewModel
+
+@{
+    ViewBag.Title = "Comapare";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row sticky-card">
+        <div class="col text-center">
+            <a href="~/home/userpage/@Model.User1.Id">
+                <img src="@Model.User1.PhotoUrl" class="round mb-2 mt-2">
+                <h4>@Model.User1.Name</h4>
+                <h4>@Model.User1.Birthday.ToString("d")</h4>
+            </a>
+        </div>
+        <div class="col text-center">
+            @if (Request.QueryString["isFamouse"] == "True")
+            {
+                <a href="~/home/userpage/@Model.User2.Id?isFamouse=true">
+                    <img src="@Model.User2.PhotoUrl" class="round mb-2 mt-2">
+                    <h4>@Model.User2.Name</h4>
+                    <h4>@Model.User2.Birthday.ToString("d")</h4>
+                </a>
+            }
+            else
+            {
+                <a href="~/home/userpage/@Model.User2.Id">
+                    <img src="~/Content/img/ava.png" class="round mb-2 mt-2">
+                    <h4>@Model.User2.Name</h4>
+                    <h4>@Model.User2.Birthday.ToString("d")</h4>
+                </a>
+            }
+
+        </div>
+    </div>
+    @foreach (KeyValuePair<int, int> pair in Model.User1.SquarePersent)
+    {
+        <div class="border-bottom mt-4 mb-2">
+            <div class="row">
+                <div class="col text-center">
+                    <h4>@Constants.NamesEn[pair.Key]</h4>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                </div>
+                <div class="col">
+                    <div class="star-ratings-sprite mt-1"><span style="width: @Model.User2.SquarePersent[pair.Key]%" class="star-ratings-sprite-rating"></span></div>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col text-center">
+            <div class="btn btn-primary btn-lg mt-4">Поделиться</div>
+        </div>
+    </div>
+</div>

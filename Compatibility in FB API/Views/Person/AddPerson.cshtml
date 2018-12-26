@@ -1,0 +1,208 @@
+﻿@using MatchUp.Models
+@using MatchUp.Models.DBModels
+@model MatchUp.Models.DBModels.Person
+
+@{
+    ViewBag.Title = "AddPerson";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Ваш список людей</h2>
+    <div class="form-group border-top pt-2">
+        @using (Html.BeginForm("AddPerson", "Person", FormMethod.Post))
+        {
+            <div class="form-group mt-2">
+                <input type="text" required name="Name" id="Name" placeholder="Введите имя" class="form-control" />
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <h5 class="col-4 m-2 align-middle">Введите дату рождения:</h5>
+
+                    <select class="form-control m-2 col-2" name="day">
+                        @for (int i = 1; i <= 31; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+                    <select class="form-control m-2 col-2" name="month">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+                    <select class="form-control m-2 col-2" name="year">
+                        @for (int i = 1900; i <= 2018; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+                    <button type="submit" class="btn btn-primary m-2 col">Добавить</button>
+                </div>
+            </div>
+        }
+    </div>
+
+
+    <div class="mt-2 pt-2">
+        <div class="row">
+            @foreach (UserViewModel person in ViewBag.Persons)
+            {
+                <div class="col-sm-4">
+                    <div class="card text-center mt-2">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <img src="@person.PhotoUrl" class="round">
+                                </div>
+                                <div class="col">
+                                    <div class="card-title">
+                                        <h5>@person.Name</h5>
+                                    </div>
+                                    <p>@person.Birthday.ToString("D")</p>
+                                </div>
+                            </div>
+                            @Html.ActionLink("Анализ", "UserPage", "Home", new { id = person.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Совместим", "Comtibility", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                            @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-similar" role="tab" aria-controls="nav-home" aria-selected="true">Добавленные люди</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-not-similar" role="tab" aria-controls="nav-profile" aria-selected="false">Известные личности</a>
+            </div>
+        </nav>
+        <div class="tab-content mb-4" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-similar" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div class="mt-2 pt-2">
+                    <div class="row">
+                        @foreach (UserViewModel person in ViewBag.Persons)
+                        {
+                            <div class="col-sm-4">
+                                <div class="card text-center mt-2">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <img src="@person.PhotoUrl" class="round">
+                                            </div>
+                                            <div class="col">
+                                                <div class="card-title">
+                                                    <h5>@person.Name</h5>
+                                                </div>
+                                                <p>@person.Birthday.ToString("D")</p>
+                                            </div>
+                                        </div>
+                                        @Html.ActionLink("Анализ", "UserPage", "Home", new { id = person.Id }, new { @class = "btn btn-primary" })
+                                        @Html.ActionLink("Совместим", "Comtibility", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                                        @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-not-similar" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="mt-2 pt-2">
+                    <div class="row">
+                        @foreach (UserViewModel person in ViewBag.Famous)
+                        {
+                            <div class="col-sm-4">
+                                <div class="card text-center mt-2">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <img src="@person.PhotoUrl" class="round">
+                                            </div>
+                                            <div class="col">
+                                                <div class="card-title">
+                                                    <h5>@person.Name</h5>
+                                                </div>
+                                                <p>@person.Birthday.ToString("D")</p>
+                                            </div>
+                                        </div>
+                                        @Html.ActionLink("Анализ", "UserPage", "Home", new { id = person.Id, isFamouse = true }, new { @class = "btn btn-primary" })
+                                        @Html.ActionLink("Совместим", "CompatibilityInPerson", "Home", new { id = person.Id, isFamouse = true }, new { id = person.Id, @class = "btn btn-primary" })
+                                        @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = person.Id, isFamouse = true }, new { id = person.Id, @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
+
+
+
+@*<h2>Добавленные</h2>
+        <div class="row">
+            @foreach (UserViewModel person in ViewBag.Persons)
+            {
+                <div class="col-sm-4">
+                    <div class="card text-center mt-2">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <img src="https://scontent-frx5-1.xx.fbcdn.net/v/t1.0-9/47096931_1373392956129812_5083053413533483008_n.jpg?_nc_cat=105&_nc_ht=scontent-frx5-1.xx&oh=491b5c3fc7353a064e4e47e04f1ad184&oe=5C65CE4D" class="round">
+                                </div>
+                                <div class="col">
+                                    <div class="card-title">
+                                        <h5>@person.Name</h5>
+                                    </div>
+                                    <p>@person.Birthday.ToString("D")</p>
+                                </div>
+                            </div>
+                            @Html.ActionLink("Анализ", "UserPage", "Home", new { id = person.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Совместим", "Comtibility", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                            @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <h2>Знаменитые люди</h2>
+        <div class="row">
+            @foreach (UserViewModel person in ViewBag.Famous)
+            {
+                <div class="col-sm-4">
+                    <div class="card text-center mt-2">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <img src="@person.PhotoUrl" class="round">
+                                </div>
+                                <div class="col">
+                                    <div class="card-title">
+                                        <h5>@person.Name</h5>
+                                    </div>
+                                    <p>@person.Birthday.ToString("D")</p>
+                                </div>
+                            </div>
+                            @Html.ActionLink("Анализ", "UserPage", "Home", new { id = person.Id, isFamouse = true }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Совместим", "CompatibilityInPerson", "Home", new { id = person.Id, isFamouse = true }, new { id = person.Id, @class = "btn btn-primary" })
+                            @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = person.Id, isFamouse = true }, new { id = person.Id, @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>*@

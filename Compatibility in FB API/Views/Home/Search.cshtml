@@ -1,0 +1,60 @@
+﻿@using MatchUp.Models
+@model IEnumerable<UserViewModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="container">
+    <div class="form-group">
+        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+        {
+            <div class="form-row">
+                <input class="col m-1" type="text" name="name" placeholder="Введите имя" />
+                <input class="col-3 btn btn-primary" type="submit" value="Поиск" />
+            </div>
+        }
+        
+    </div>
+    @if (Model != null && Model.Any())
+    {
+        foreach (UserViewModel user in Model)
+         {
+             <div class="border-bottom mb-2 pb-2 pt-2">
+                 <a href="/home/userpage/@user.Id?isFamouse=true">
+                     <div class="row mb-2">
+                         <div class="col-4">
+                             <img src="@user.PhotoUrl" class="round">
+                         </div>
+                         <div class="col-8 ">
+                             <div class="pt-3">
+                                 <h4>@user.Name</h4>
+                                 <h6 class="text-black-50">@user.Details</h6>
+                             </div>
+                         </div>
+                     </div>
+                 </a>
+                 <div>
+                     <h6>Совпадение @user.SimilarPercent%</h6>
+                     <div class="progress mb-2" style="height: 20px;">
+                         <div class="progress-bar" role="progressbar" style="width: @user.SimilarPercent%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col text-center">
+                         @Html.ActionLink("Совместимость", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                         @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                     </div>
+                 </div>
+             </div>
+         }
+    }
+    else
+    {
+        <div class="row">
+            <div class="col text-center">
+                <h4>Человека с таким именем не найдено</h4>
+            </div>
+        </div>
+    }
+</div>

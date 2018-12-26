@@ -1,0 +1,20 @@
+﻿@using MatchUp.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Выполнить вход";
+}
+
+<div class="container text-center" style="margin-top: 250px">
+    <h2>@ViewBag.Title</h2>
+    <div class="row">
+        <div class="col text-center">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

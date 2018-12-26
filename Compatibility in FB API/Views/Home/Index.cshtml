@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row" style="margin-top: 250px">
+        <div class="col text-center">
+            <h1>Анализ личности по дате рождения</h1>
+            @Html.ActionLink("Продолжить в Facebook", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2" })
+        </div>
+    </div>
+</div>
