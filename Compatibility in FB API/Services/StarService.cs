@@ -8,7 +8,7 @@ namespace MatchUp.Services
 {
     public class StarService
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        ApplicationDbContext context = ApplicationDbContext.Create();
         PythagorianCalculator calculator = new PythagorianCalculator();
 
         public void CalcAllInTable()
@@ -196,25 +196,6 @@ namespace MatchUp.Services
         public void Save()
         {
             context.SaveChanges();
-        }
-
-        private UserViewModel ToCalculateUser(Star person)
-        {
-            UserViewModel user = new UserViewModel
-            {
-                Id = person.Id.ToString(),
-                Name = person.Name,
-                Birthday = person.Birthday,
-                Details = person.Details,
-                PhotoUrl = person.PhotoUrl
-            };
-
-            user.PythagorianMatrix = calculator.CalculateSqare(user.Birthday);
-            user.SquarePersent = calculator.GetPercent(user.PythagorianMatrix);
-            user.MoreInfo = calculator.GetMoreInfo(user.Matrix);
-            user.MoreInfoPersent = calculator.GetMoreInfoInPercent(user.MoreInfo);
-
-            return user;
         }
     }
 }

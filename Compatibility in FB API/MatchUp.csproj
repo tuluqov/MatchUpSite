@@ -225,7 +225,6 @@
     <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\DescriptionService.cs" />
     <Compile Include="Services\PythagorianMatrixService.cs" />
-    <Compile Include="Services\SecondaryAbilitiesService.cs" />
     <Compile Include="Services\StarService.cs" />
     <Compile Include="Services\PersonService.cs" />
     <Compile Include="Services\PythagorianCalculator.cs" />
