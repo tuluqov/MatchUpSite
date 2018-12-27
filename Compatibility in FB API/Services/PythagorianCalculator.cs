@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using MatchUp.Models;
 using MatchUp.Models.DBModels;
 
@@ -153,13 +154,30 @@ namespace MatchUp.Services
                 {
                     counter++;
                 }
-                //similar += Math.Abs(i.Value - model2.SquarePersent[i.Key]);
             }
 
             similar += (float)counter / 9 * 100;
             
-            //similar = similar / 9;
-            //similar = 100 - similar;
+            return (int)similar;
+        }
+
+        public int GetComparePercentMatrix(PythagorianMatrix matrix1, PythagorianMatrix matrix2)
+        {
+            float similar = 0f;
+            int counter = 0;
+
+            var matrixFieds1 = matrix1.GetType().GetProperties();
+            var matrixFieds2 = matrix2.GetType().GetProperties();
+
+            for (int i = 0; i < matrixFieds1.Length; i++)
+            {
+                if (matrixFieds1[i].GetValue(matrix1).ToString() == matrixFieds2[i].GetValue(matrix2).ToString())
+                {
+                    counter++;
+                }
+            }
+
+            similar += (float)counter / 9 * 100;
 
             return (int)similar;
         }

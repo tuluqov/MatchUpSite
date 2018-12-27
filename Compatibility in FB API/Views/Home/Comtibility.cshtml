@@ -68,7 +68,7 @@
         </div>
 
         <div class="card mt-2">
-            @if (Math.Abs(Model.User1.SecondaryAbilities.Temperament - Model.User2.SecondaryAbilities.Temperament) > 2)
+            @if (Math.Abs(Model.User1.SecondaryAbilities.Temperament - Model.User2.SecondaryAbilities.Temperament) == 1)
             {
             <div class="card-header">
                 Совместимость по темпераменту: (@Model.User1.SecondaryAbilities.Temperament : @Model.User2.SecondaryAbilities.Temperament)

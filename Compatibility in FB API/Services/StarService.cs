@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MatchUp.Models;
 using MatchUp.Models.DBModels;
@@ -73,7 +74,7 @@ namespace MatchUp.Services
             return stars;
         }
 
-        private IEnumerable<Star> GetForUser(int idUserMatrix)
+        private IEnumerable<Star> GetForUser(int idUserMatrix, int peopleNumbers)
         {
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
 
@@ -89,7 +90,7 @@ namespace MatchUp.Services
                             x.Matrix.VitalEnergy == userMatrix.VitalEnergy &&
                             x.Matrix.Id != userMatrix.Id)
                 .OrderBy(x => x.Id)
-                .Take(2)
+                .Take(peopleNumbers)
                 .ToList();
 
             return similarStars;
@@ -99,11 +100,11 @@ namespace MatchUp.Services
         {
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
 
-            var mostSame = GetForUser(idUserMatrix);
+            var mostSame = GetForUser(idUserMatrix, 2);
 
             var sameCharacter = context.Stars
                 .Where(x => x.Matrix.CharacterWill == userMatrix.CharacterWill)
-                .OrderBy(x=>x.Id)
+                .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
@@ -179,6 +180,37 @@ namespace MatchUp.Services
             };
 
             return allStars;
+        }
+
+        public IEnumerable<UserViewModel> GetSimilarStarsInPercent(int idUserMatrix)
+        {
+            var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
+
+            var forUser = Mapper.ToUsers(GetForUser(idUserMatrix, 30).ToList());
+
+            foreach (var userViewModel in forUser)
+            {
+                userViewModel.SimilarPercent =
+                    calculator.GetComparePercentMatrix(userMatrix, userViewModel.PythagorianMatrix);
+            }
+
+            return forUser;
+        }
+
+        public IEnumerable<Star> GetCompatibilityStars(int idUserMatrix, int idSecodaryAbilities)
+        {
+            var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
+            var userSecondary = context.SecondaryAbilitieses.FirstOrDefault(x => x.Id == idSecodaryAbilities);
+
+            //var stars = context.Stars.Where(x => x.Matrix.CharacterWill.Length - userMatrix.CharacterWill.Length == 1)
+            var stars = from star in context.Stars
+                        where Math.Abs(star.Matrix.CharacterWill.Length - userMatrix.CharacterWill.Length) > 3 &&
+                              Math.Abs(star.Matrix.CharacterWill.Length - userMatrix.CharacterWill.Length) < 5 &&
+                              Math.Abs(star.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+                              Math.Abs(star.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2
+                        select star;
+
+            return stars;
         }
 
         public Star GetById(int id)
