@@ -8,16 +8,16 @@
 }
 
 <div class="container">
-    <h2>Ваш список людей</h2>
+    <h2>Your persons list</h2>
     <div class="form-group border-top pt-2">
         @using (Html.BeginForm("AddPerson", "Person", FormMethod.Post))
         {
             <div class="form-group mt-2">
-                <input type="text" required name="Name" id="Name" placeholder="Введите имя" class="form-control" />
+                <input type="text" required name="Name" id="Name" placeholder="Enter name" class="form-control" />
             </div>
             <div class="form-group">
                 <div class="row">
-                    <h5 class="col-4 m-2 align-middle">Введите дату рождения:</h5>
+                    <h5 class="col-4 m-2 align-middle">Enter date of birth:</h5>
 
                     <select class="form-control m-2 col-2" name="day">
                         @for (int i = 1; i <= 31; i++)
@@ -37,7 +37,7 @@
                             <option>@i</option>
                         }
                     </select>
-                    <button type="submit" class="btn btn-primary m-2 col">Добавить</button>
+                    <button type="submit" class="btn btn-primary m-2 col">Add</button>
                 </div>
             </div>
         }
@@ -62,9 +62,9 @@
                                     <p>@person.Birthday.ToString("D")</p>
                                 </div>
                             </div>
-                            @Html.ActionLink("Анализ", "UserPage", "Home", new { id = person.Id }, new { @class = "btn btn-primary" })
-                            @Html.ActionLink("Совместим", "Comtibility", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
-                            @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                            @Html.ActionLink("Analisis", "UserPage", "Home", new { id = person.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Compatibility", "Comtibility", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
+                            @Html.ActionLink("Compare", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary" })
                         </div>
                     </div>
                 </div>

@@ -18,7 +18,5 @@ namespace MatchUp.Models
         public Dictionary<int, Description> Descriptions { get; set; }
         public Dictionary<int, string> Matrix { get; set; }
         public Dictionary<int, int> SquarePersent { get; set; }
-        public Dictionary<string, int> MoreInfo { get; set; }
-        public Dictionary<string, int> MoreInfoPersent { get; set; }
     }
 }

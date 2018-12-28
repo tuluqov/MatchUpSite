@@ -8,7 +8,7 @@ namespace MatchUp.Services
 {
     public class PersonService
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        ApplicationDbContext context = ApplicationDbContext.Create();
         PythagorianMatrixService pythagorianService = new PythagorianMatrixService();
 
         public void Add(Person model)
@@ -16,8 +16,11 @@ namespace MatchUp.Services
             context.Persons.Add(model);
             context.SaveChanges();
 
-            pythagorianService.CreateUserMatrix(model);
-            //pythagorianService.CreateUserSecondaryAbilities(model);
+            pythagorianService.CreateUserMatrix(model, context);
+
+            model = context.Persons.FirstOrDefault(x => x.Id == model.Id);
+
+            pythagorianService.CreateUserSecondaryAbilities(model, context);
         }
 
         public IEnumerable<UserViewModel> GetMyPerson(string userId)
@@ -32,9 +35,7 @@ namespace MatchUp.Services
         public Person GetById(int id)
         {
             var person = context.Persons.FirstOrDefault(x => x.Id == id);
-
-            person.Matrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == person.MatrixId);
-
+            
             return person;
         }
     }

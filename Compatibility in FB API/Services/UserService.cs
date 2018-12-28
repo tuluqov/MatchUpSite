@@ -7,7 +7,7 @@ namespace MatchUp.Services
 {
     public class UserService
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        ApplicationDbContext context = ApplicationDbContext.Create();
 
         public ApplicationUser GetCurrentUser(IPrincipal userContext)
         {

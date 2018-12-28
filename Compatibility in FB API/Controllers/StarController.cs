@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using MatchUp.Models;
 using MatchUp.Services;
 using MatchUp.Shared;
+using Microsoft.AspNet.Identity;
 
 namespace MatchUp.Controllers
 {
@@ -13,12 +15,18 @@ namespace MatchUp.Controllers
         [HttpGet]
         public ActionResult Stars()
         {
-            var stars = starService.GetAll();
+            var user = userService.GetCurrentUser(User);
+
+            var stars = starService.GetSimilarStarsInPercent(user.MatrixId.Value);
+
             ViewBag.Ok = stars;
+            ViewBag.Compatibility = Mapper.ToUsers(starService
+                .GetCompatibilityStars(user.MatrixId.Value, user.SecondaryAbilitiesId.Value)
+                .ToList());
 
             CompareWithFamouseViewModel model = new CompareWithFamouseViewModel
             {
-                Person = Mapper.ToUser(userService.GetCurrentUser(User)),
+                Person = Mapper.ToUser(user),
                 FamousePersons = stars
             };
 

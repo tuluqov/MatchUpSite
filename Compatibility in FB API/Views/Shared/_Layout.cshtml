@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <title>@ViewBag.Title - Personal birthday analysis</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -26,25 +26,25 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("Мои данные", "Index", "Home", null, new { @class = "nav-link" })
+                            @Html.ActionLink("My Psychomatrix", "Index", "Home", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Мои люди", "AddPerson", "Person", null, new { @class = "nav-link" })
+                            @Html.ActionLink("My peoples", "AddPerson", "Person", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Знаменитости", "Stars", "Star", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Celebrities", "Stars", "Star", null, new { @class = "nav-link" })
                         </li>
                         <li>
-                            @Html.ActionLink("Поиск", "Search", "Home", null, new { @class = "nav-link", id = "registerLink" })
+                            @Html.ActionLink("Search", "Search", "Home", null, new { @class = "nav-link", id = "registerLink" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Выйти", "LogOff", "Account", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Log out", "LogOff", "Account", null, new { @class = "nav-link" })
                         </li>
                     }
                     else
                     {
                         <li>
-                            @Html.ActionLink("Войти", "Login", "Account", null, new { @class = "nav-link", id = "registerLink" })
+                            @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "nav-link", id = "registerLink" })
                         </li>
                     }
                 </ul>
@@ -54,85 +54,8 @@
     <div class="mt-3">
         @RenderBody()
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
-
-    @*<script>
-            function handle_fb_data(response) {
-                FB.api('/me', function (response) {
-                    console.log('Successful login for: ' + response.name);
-                    console.log('Прилитело из ФБ: ' + JSON.stringify(response));
-                    // alert('Прилитело из ФБ: '+JSON.stringify(response));
-
-                    $.ajax({
-                        type: 'post',
-                        url: '/do/reg/fb',
-                        data: response,
-                        success: function (msg) {
-                            console.log(msg);
-                            if ((msg == 'зарегались') || (msg == 'залогинились')) { window.location.reload(); }
-                        },
-                        error: function () { }
-                    })
-                });
-            }
-
-            function fb_login() {
-                FB.getLoginStatus(function (response) {
-                    if (response.authResponse) {
-                        console.log('Welcome!  Fetching your information.... ');
-                        handle_fb_data(response);
-                    } else {
-                        console.log('Юзер был не залогинен в самом ФБ, запускаем окно логинизирования');
-                        FB.login(function (response) {
-                            if (response.authResponse) {
-                                console.log('Welcome!  Fetching your information.... ');
-                                handle_fb_data(response);
-                            } else {
-                                console.log('Походу пользователь передумал логиниться через ФБ');
-                            }
-                        });
-                    }
-                }, {
-                    scope: 'email,id,'
-                });
-            }
-
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '200830110837342',
-                    cookie: true,
-                    xfbml: true,
-                    version: 'v3.2'
-                });
-            };
-
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-        <script>
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src =
-                    'https://connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v3.2&appId=200830110837342&autoLogAppEvents=1';
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
-        <div class="fb-login-button" onclick="fb_login();return false;" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false">
-
-        </div>*@
 </body>
 </html>

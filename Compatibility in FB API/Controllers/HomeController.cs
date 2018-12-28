@@ -116,15 +116,9 @@ namespace MatchUp.Controllers
                 CompatibilityViewModel model = new CompatibilityViewModel
                 {
                     User1 = Mapper.ToUser(userService.GetCurrentUser(User)),
-                    User2 = new UserViewModel
-                    {
-                        Name = personService.GetById(id).Name,
-                        Birthday = personService.GetById(id).Birthday
-                    }
+                    User2 = Mapper.ToUser(personService.GetById(id))
                 };
-
-                calculator.CalculateAll(model.User2);
-
+                
                 return View("Comtibility", model);
             }
             else
@@ -134,9 +128,7 @@ namespace MatchUp.Controllers
                     User1 = Mapper.ToUser(userService.GetCurrentUser(User)),
                     User2 = Mapper.ToUser(starService.GetById(id))
                 };
-
-                calculator.CalculateAll(model.User2);
-
+                
                 return View("Comtibility", model);
             }
         }

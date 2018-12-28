@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MatchUp.Models;
 using MatchUp.Models.DBModels;
@@ -8,7 +9,7 @@ namespace MatchUp.Services
 {
     public class StarService
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        ApplicationDbContext context = ApplicationDbContext.Create();
         PythagorianCalculator calculator = new PythagorianCalculator();
 
         public void CalcAllInTable()
@@ -34,28 +35,28 @@ namespace MatchUp.Services
             }
         }
 
-        //public void CalcAllInTableSecond()
-        //{
-        //    var allStars = context.Stars.ToList();
+        public void CalcAllInTableSecond()
+        {
+            var allStars = context.Stars.ToList();
 
-        //    foreach (var star in allStars)
-        //    {
-        //        if (star.SecondaryAbilitiesId != null)
-        //        {
-        //            continue;
-        //        }
+            foreach (var star in allStars)
+            {
+                if (star.SecondaryAbilitiesId != null)
+                {
+                    continue;
+                }
 
-        //        var secondaryAbilities = calculator.CalculateSecondaryAbilities(star.Matrix);
+                var secondaryAbilities = calculator.CalculateSecondaryAbilities(star.Matrix);
 
-        //        context.SecondaryAbilitieses.Add(secondaryAbilities);
+                context.SecondaryAbilitieses.Add(secondaryAbilities);
 
-        //        context.SaveChanges();
+                context.SaveChanges();
 
-        //        star.SecondaryAbilitiesId = secondaryAbilities.Id;
+                star.SecondaryAbilitiesId = secondaryAbilities.Id;
 
-        //        context.SaveChanges();
-        //    }
-        //}
+                context.SaveChanges();
+            }
+        }
 
         public IEnumerable<UserViewModel> GetAll()
         {
@@ -73,7 +74,7 @@ namespace MatchUp.Services
             return stars;
         }
 
-        private IEnumerable<Star> GetForUser(int idUserMatrix)
+        private IEnumerable<Star> GetForUser(int idUserMatrix, int peopleNumbers)
         {
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
 
@@ -89,7 +90,7 @@ namespace MatchUp.Services
                             x.Matrix.VitalEnergy == userMatrix.VitalEnergy &&
                             x.Matrix.Id != userMatrix.Id)
                 .OrderBy(x => x.Id)
-                .Take(2)
+                .Take(peopleNumbers)
                 .ToList();
 
             return similarStars;
@@ -99,11 +100,11 @@ namespace MatchUp.Services
         {
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
 
-            var mostSame = GetForUser(idUserMatrix);
+            var mostSame = GetForUser(idUserMatrix, 2);
 
             var sameCharacter = context.Stars
                 .Where(x => x.Matrix.CharacterWill == userMatrix.CharacterWill)
-                .OrderBy(x=>x.Id)
+                .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
@@ -181,6 +182,47 @@ namespace MatchUp.Services
             return allStars;
         }
 
+        public IEnumerable<UserViewModel> GetSimilarStarsInPercent(int idUserMatrix)
+        {
+            var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
+
+            var forUser = Mapper.ToUsers(GetForUser(idUserMatrix, 30).ToList());
+
+            foreach (var userViewModel in forUser)
+            {
+                userViewModel.SimilarPercent =
+                    calculator.GetComparePercentMatrix(userMatrix, userViewModel.PythagorianMatrix);
+            }
+
+            return forUser;
+        }
+
+        public IEnumerable<Star> GetCompatibilityStars(int idUserMatrix, int idSecodaryAbilities)
+        {
+            var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
+            var userSecondary = context.SecondaryAbilitieses.FirstOrDefault(x => x.Id == idSecodaryAbilities);
+
+           //var stars = context.Stars.Where(x =>
+            //    Math.Abs(x.Matrix.CharacterWill.Count(n => n != '-') -
+            //             userMatrix.CharacterWill.Count(n => n != '-')) > 2 &&
+            //    Math.Abs(x.Matrix.CharacterWill.Count(n => n != '-') -
+            //             userMatrix.CharacterWill.Count(n => n != '-')) < 5 &&
+            //    Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+            //    Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2).ToList();
+
+            var stars = context.Stars.Where(x =>
+                Math.Abs(x.Matrix.CharacterWill.Length -
+                         userMatrix.CharacterWill.Length) > 2 &&
+                Math.Abs(x.Matrix.CharacterWill.Length -
+                         userMatrix.CharacterWill.Length) < 5 &&
+                Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+                Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2)
+                .Take(30)
+                .ToList();
+
+            return stars;
+        }
+
         public Star GetById(int id)
         {
             var person = context.Stars.FirstOrDefault(x => x.Id == id);
@@ -196,25 +238,6 @@ namespace MatchUp.Services
         public void Save()
         {
             context.SaveChanges();
-        }
-
-        private UserViewModel ToCalculateUser(Star person)
-        {
-            UserViewModel user = new UserViewModel
-            {
-                Id = person.Id.ToString(),
-                Name = person.Name,
-                Birthday = person.Birthday,
-                Details = person.Details,
-                PhotoUrl = person.PhotoUrl
-            };
-
-            user.PythagorianMatrix = calculator.CalculateSqare(user.Birthday);
-            user.SquarePersent = calculator.GetPercent(user.PythagorianMatrix);
-            user.MoreInfo = calculator.GetMoreInfo(user.Matrix);
-            user.MoreInfoPersent = calculator.GetMoreInfoInPercent(user.MoreInfo);
-
-            return user;
         }
     }
 }
