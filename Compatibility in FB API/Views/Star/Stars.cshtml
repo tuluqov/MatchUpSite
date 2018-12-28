@@ -19,9 +19,8 @@
     <div>
         <nav class="sticky-card">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-similar" role="tab" aria-controls="nav-home" aria-selected="true">Похожие</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-not-similar" role="tab" aria-controls="nav-profile" aria-selected="false">Не похожие</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-compatibility" role="tab" aria-controls="nav-compatbility" aria-selected="false">Совместимые</a>
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-similar" role="tab" aria-controls="nav-home" aria-selected="true">Similar</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-compatibility" role="tab" aria-controls="nav-compatbility" aria-selected="false">Compatible</a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -51,50 +50,17 @@
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    @Html.ActionLink("Совместимость", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compatibility", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compare", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-not-similar" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div class="mt-2 pt-2">
-                    @*@foreach (UserViewModel user in ViewBag.Bad)
-                        {
-                            <div class="border-bottom mb-2 pb-2 pt-2">
-                                <a href="/home/userpage/@user.Id?isFamouse=true">
-                                    <div class="row mb-2">
-                                        <div class="col-4">
-                                            <img src="@user.PhotoUrl" class="round">
-                                        </div>
-                                        <div class="col-8 ">
-                                            <div class="pt-3">
-                                                <h4>@user.Name</h4>
-                                                <h6 class="text-black-50">@user.Details</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div>
-                                    <h6>Совпадение @user.SimilarPercent%</h6>
-                                    <div class="progress mb-2" style="height: 20px;">
-                                        <div class="progress-bar" role="progressbar" style="width: @user.SimilarPercent%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col text-center">
-                                        @Html.ActionLink("Совместимость", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                        @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    </div>
-                                </div>
-                            </div>
-                        }*@
-                </div>
-            </div>
             <div class="tab-pane fade show active" id="nav-compatibility" role="tabpanel" aria-labelledby="nav-home-tab">
-                @foreach (UserViewModel user in ViewBag.Compatibility)
+                <div class="mt-2 pt-2">
+                    @foreach (UserViewModel user in ViewBag.Compatibility)
                     {
                         <div class="border-bottom mb-2 pb-2 pt-2">
                             <a href="/home/userpage/@user.Id?isFamouse=true">
@@ -112,12 +78,13 @@
                             </a>
                             <div class="row">
                                 <div class="col text-center">
-                                    @Html.ActionLink("Совместимость", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    @Html.ActionLink("Сравнить", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compatibility", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compare", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
                                 </div>
                             </div>
                         </div>
                     }
+                </div>
             </div>
         </div>
     </div>

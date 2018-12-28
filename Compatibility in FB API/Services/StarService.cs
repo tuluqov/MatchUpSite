@@ -202,13 +202,23 @@ namespace MatchUp.Services
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
             var userSecondary = context.SecondaryAbilitieses.FirstOrDefault(x => x.Id == idSecodaryAbilities);
 
-            //var stars = context.Stars.Where(x => x.Matrix.CharacterWill.Length - userMatrix.CharacterWill.Length == 1)
-            var stars = from star in context.Stars
-                        where Math.Abs(star.Matrix.CharacterWill.Length - userMatrix.CharacterWill.Length) > 3 &&
-                              Math.Abs(star.Matrix.CharacterWill.Length - userMatrix.CharacterWill.Length) < 5 &&
-                              Math.Abs(star.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
-                              Math.Abs(star.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2
-                        select star;
+           //var stars = context.Stars.Where(x =>
+            //    Math.Abs(x.Matrix.CharacterWill.Count(n => n != '-') -
+            //             userMatrix.CharacterWill.Count(n => n != '-')) > 2 &&
+            //    Math.Abs(x.Matrix.CharacterWill.Count(n => n != '-') -
+            //             userMatrix.CharacterWill.Count(n => n != '-')) < 5 &&
+            //    Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+            //    Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2).ToList();
+
+            var stars = context.Stars.Where(x =>
+                Math.Abs(x.Matrix.CharacterWill.Length -
+                         userMatrix.CharacterWill.Length) > 2 &&
+                Math.Abs(x.Matrix.CharacterWill.Length -
+                         userMatrix.CharacterWill.Length) < 5 &&
+                Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+                Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2)
+                .Take(30)
+                .ToList();
 
             return stars;
         }

@@ -35,9 +35,7 @@ namespace MatchUp.Services
         public Person GetById(int id)
         {
             var person = context.Persons.FirstOrDefault(x => x.Id == id);
-
-            person.Matrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == person.MatrixId);
-
+            
             return person;
         }
     }
