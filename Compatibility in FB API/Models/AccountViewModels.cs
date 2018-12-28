@@ -15,7 +15,7 @@ namespace MatchUp.Models
 
         [Required]
         [Display(Name = "Дата рождения")]
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get; set; }    
     }
 
     public class ExternalLoginListViewModel

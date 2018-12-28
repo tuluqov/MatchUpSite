@@ -173,7 +173,15 @@ namespace MatchUp.Controllers
         [HttpPost]
         public ActionResult Search(string name)
         {
+            var currentUser = userService.GetCurrentUser(User);
+
             var result = Mapper.ToUsers(starService.Find(name).ToList());
+
+            foreach (var model in result)
+            {
+                model.SimilarPercent = 
+                    calculator.GetComparePercentMatrix(currentUser.Matrix, model.PythagorianMatrix);
+            }
 
             return View(result);
         }
