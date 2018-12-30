@@ -69,7 +69,7 @@ namespace MatchUp.Services
 
         public IEnumerable<Star> Find(string name)
         {
-            var stars = context.Stars.Where(x => x.Name.Contains(name)).Take(20);
+            var stars = context.Stars.Where(x => x.Name.Contains(name)).Take(30);
 
             return stars;
         }
@@ -186,7 +186,37 @@ namespace MatchUp.Services
         {
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
 
-            var forUser = Mapper.ToUsers(GetForUser(idUserMatrix, 30).ToList());
+            var similarStarsCount = context.Stars
+                .Count(x => x.Matrix.CharacterWill == userMatrix.CharacterWill ||
+                            x.Matrix.CognitiveCreative == userMatrix.CognitiveCreative ||
+                            x.Matrix.Duty == userMatrix.Duty ||
+                            x.Matrix.HealthBeauty == userMatrix.HealthBeauty ||
+                            x.Matrix.IntellectMemory == userMatrix.IntellectMemory ||
+                            x.Matrix.LaborSkill == userMatrix.LaborSkill ||
+                            x.Matrix.LogicIntuition == userMatrix.LogicIntuition ||
+                            x.Matrix.Luck == userMatrix.Luck ||
+                            x.Matrix.VitalEnergy == userMatrix.VitalEnergy ||
+                            x.Matrix.Id != userMatrix.Id);
+
+            var skipCount = new Random().Next(similarStarsCount);
+
+            var similarStars = context.Stars
+                .Where(x => x.Matrix.CharacterWill == userMatrix.CharacterWill ||
+                            x.Matrix.CognitiveCreative == userMatrix.CognitiveCreative ||
+                            x.Matrix.Duty == userMatrix.Duty ||
+                            x.Matrix.HealthBeauty == userMatrix.HealthBeauty ||
+                            x.Matrix.IntellectMemory == userMatrix.IntellectMemory ||
+                            x.Matrix.LaborSkill == userMatrix.LaborSkill ||
+                            x.Matrix.LogicIntuition == userMatrix.LogicIntuition ||
+                            x.Matrix.Luck == userMatrix.Luck ||
+                            x.Matrix.VitalEnergy == userMatrix.VitalEnergy ||
+                            x.Matrix.Id != userMatrix.Id)
+                .OrderBy(x => x.Id)
+                .Skip(skipCount)
+                .Take(30)
+                .ToList();
+
+            var forUser = Mapper.ToUsers(similarStars);
 
             foreach (var userViewModel in forUser)
             {
@@ -194,7 +224,7 @@ namespace MatchUp.Services
                     calculator.GetComparePercentMatrix(userMatrix, userViewModel.PythagorianMatrix);
             }
 
-            return forUser;
+            return forUser.OrderByDescending(x => x.SimilarPercent);
         }
 
         public IEnumerable<Star> GetCompatibilityStars(int idUserMatrix, int idSecodaryAbilities)
@@ -202,21 +232,25 @@ namespace MatchUp.Services
             var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == idUserMatrix);
             var userSecondary = context.SecondaryAbilitieses.FirstOrDefault(x => x.Id == idSecodaryAbilities);
 
-           //var stars = context.Stars.Where(x =>
-            //    Math.Abs(x.Matrix.CharacterWill.Count(n => n != '-') -
-            //             userMatrix.CharacterWill.Count(n => n != '-')) > 2 &&
-            //    Math.Abs(x.Matrix.CharacterWill.Count(n => n != '-') -
-            //             userMatrix.CharacterWill.Count(n => n != '-')) < 5 &&
-            //    Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
-            //    Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2).ToList();
+            var starsCount = context.Stars
+                .Count(x => Math.Abs(x.Matrix.CharacterWill.Length -
+                             userMatrix.CharacterWill.Length) > 2 &&
+                    Math.Abs(x.Matrix.CharacterWill.Length -
+                             userMatrix.CharacterWill.Length) < 5 &&
+                    Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+                    Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2);
+
+            var skipCount = new Random().Next(starsCount);
 
             var stars = context.Stars.Where(x =>
-                Math.Abs(x.Matrix.CharacterWill.Length -
-                         userMatrix.CharacterWill.Length) > 2 &&
-                Math.Abs(x.Matrix.CharacterWill.Length -
-                         userMatrix.CharacterWill.Length) < 5 &&
-                Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
-                Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2)
+                 Math.Abs(x.Matrix.CharacterWill.Length -
+                          userMatrix.CharacterWill.Length) > 2 &&
+                 Math.Abs(x.Matrix.CharacterWill.Length -
+                          userMatrix.CharacterWill.Length) < 5 &&
+                 Math.Abs(x.SecondaryAbilities.Temperament - userSecondary.Temperament) < 2 &&
+                 Math.Abs(x.SecondaryAbilities.DomesticBliss - userSecondary.DomesticBliss) < 2)
+                .OrderBy(x => x.Id)
+                .Skip(skipCount)
                 .Take(30)
                 .ToList();
 
