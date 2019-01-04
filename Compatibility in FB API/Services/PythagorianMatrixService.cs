@@ -1,4 +1,5 @@
-﻿using MatchUp.Models;
+﻿using System.Linq;
+using MatchUp.Models;
 using MatchUp.Models.DBModels;
 
 namespace MatchUp.Services
@@ -8,7 +9,7 @@ namespace MatchUp.Services
         //ApplicationDbContext context = new ApplicationDbContext();
         PythagorianCalculator calculator = new PythagorianCalculator();
 
-        public void CreateUserMatrix(ApplicationUser user, ApplicationDbContext context)
+        public int CreateUserMatrix(ApplicationUser user, ApplicationDbContext context)
         {
             var matrix = calculator.CalculateSqare(user.Birthday);
 
@@ -19,6 +20,8 @@ namespace MatchUp.Services
             user.MatrixId = matrix.Id;
 
             context.SaveChanges();
+
+            return matrix.Id;
         }
 
         public void CreateUserMatrix(Person person, ApplicationDbContext context)
@@ -36,7 +39,9 @@ namespace MatchUp.Services
 
         public void CreateUserSecondaryAbilities(ApplicationUser user, ApplicationDbContext context)
         {
-            var secondaryAbilities = calculator.CalculateSecondaryAbilities(user.Matrix);
+            var userMatrix = context.PythagorianMatrices.FirstOrDefault(x => x.Id == user.MatrixId);
+            
+            var secondaryAbilities = calculator.CalculateSecondaryAbilities(userMatrix);
 
             context.SecondaryAbilitieses.Add(secondaryAbilities);
 

@@ -22,7 +22,7 @@ namespace MatchUp.Controllers
 
         public AccountController()
         {
-            
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -82,7 +82,7 @@ namespace MatchUp.Controllers
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
                 default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
+                    ModelState.AddModelError("", "Login error");
                     return View(model);
             }
         }
@@ -102,8 +102,24 @@ namespace MatchUp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Birthday = model.Birthday,
+                    Name = model.Name,
+                    PhotoUrl = @"\Content\img\ava.png"
+                };
+
+                var context = ApplicationDbContext.Create();
+
+                PythagorianMatrixService pythagorianService = new PythagorianMatrixService();
+                pythagorianService.CreateUserMatrix(user, context);
+                
+                pythagorianService.CreateUserSecondaryAbilities(user, context);
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -122,7 +138,7 @@ namespace MatchUp.Controllers
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
         }
-        
+
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
@@ -193,6 +209,13 @@ namespace MatchUp.Controllers
                     PhotoUrl = currentUser.PhotoUrl
                 };
 
+                var context = ApplicationDbContext.Create();
+
+                PythagorianMatrixService pythagorianService = new PythagorianMatrixService();
+                pythagorianService.CreateUserMatrix(user, context);
+
+                pythagorianService.CreateUserSecondaryAbilities(user, context);
+
                 var result = await UserManager.CreateAsync(user);
 
                 if (result.Succeeded)
@@ -201,19 +224,7 @@ namespace MatchUp.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                        //Create matrix and save matrix id in user table
-
-                        var context = ApplicationDbContext.Create();
-
-                        PythagorianMatrixService pythagorianService = new PythagorianMatrixService();
-                        pythagorianService.CreateUserMatrix(user, context);
-
-                        UserService userService = new UserService();
-                        user = userService.GetCurrentUser(User);
-
-                        pythagorianService.CreateUserSecondaryAbilities(user, context);
-
+                        
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -224,7 +235,7 @@ namespace MatchUp.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
-        
+
         // POST: /Account/LogOff
         [HttpGet]
         public ActionResult LogOff()
@@ -338,7 +349,7 @@ namespace MatchUp.Controllers
                 Birthday = DateTime.Parse(friendListJson[Constants.Fb.Birthday].ToString(), new CultureInfo("en-US")),
                 PhotoUrl = friendListJson[Constants.Fb.Picture]["data"]["url"].ToString()
             };
-            
+
             return user;
         }
 

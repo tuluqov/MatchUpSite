@@ -9,7 +9,7 @@
         <div id="socialLoginList">
             @foreach (AuthenticationDescription p in loginProviders)
             {
-                <button type="submit" class="btn btn-primary btn-lg mt-2" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Войти с помощью учетной записи @p.Caption">@p.AuthenticationType</button>
+                <button type="submit" class="btn btn-primary mt-2" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Войти с помощью учетной записи @p.Caption">@p.AuthenticationType</button>
             }
         </div>
 
