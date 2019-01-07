@@ -6,15 +6,15 @@ namespace MatchUp.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Пол")]
+        [Display(Name = "Gender")]
         public int Gender { get; set; }
 
         [Required]
-        [Display(Name = "Дата рождения")]
+        [Display(Name = "Birthday")]
         public DateTime Birthday { get; set; }
     }
 
@@ -22,27 +22,20 @@ namespace MatchUp.Models
     {
         public string ReturnUrl { get; set; }
     }
-
-    public class ForgotViewModel
-    {
-        [Required]
-        [Display(Name = "Адрес электронной почты")]
-        public string Email { get; set; }
-    }
-
+    
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "Email")]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Запомнить меня")]
+        [Display(Name = "Remember me")]
         public bool RememberMe { get; set; }
     }
 
@@ -59,7 +52,7 @@ namespace MatchUp.Models
 
         [Required]
         [StringLength(100, ErrorMessage = "The value {0} must contain at least {2} characters.", MinimumLength = 6)]
-        //[DataType(DataType.Password)]
+        [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
@@ -72,6 +65,10 @@ namespace MatchUp.Models
         [Display(Name = "Birthday")]
         [DataType(DataType.DateTime)]
         public DateTime Birthday { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]
+        public int Gender { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -93,13 +90,5 @@ namespace MatchUp.Models
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
-    }
-
-    public class ForgotPasswordViewModel
-    {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Почта")]
-        public string Email { get; set; }
     }
 }

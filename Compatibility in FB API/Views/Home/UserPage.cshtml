@@ -1,7 +1,8 @@
-﻿@using MatchUp.Models
+﻿@using System.Globalization
+@using MatchUp.Models
 @using MatchUp.Services
 @using MatchUp.Shared
-@model MatchUp.Models.UserViewModel
+@model UserViewModel
 @{
     ViewBag.Title = "User";
     Layout = "../Shared/_Layout.cshtml";
@@ -9,21 +10,33 @@
 
 <div class="container">
     <div class="row sticky-card p-2">
-        <div class="col-4 col-md-4">
+        <div class="col-4 col-md-4 text-center">
             <img src="@Model.PhotoUrl" class="round">
         </div>
-        <div class="col-8 col-md-8 mt-3">
-            <h4>@Model.Name</h4>
-            <h4>@Model.Birthday.ToShortDateString()</h4>
+        <div class="col-8 col-md-8 text-center">
+            <h6>@Model.Name</h6>
+            <h6>@Model.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
             @if (Request.QueryString["isFamouse"] == "true")
             {
                 <h6>@Model.Details</h6>
-                <a href="@CommonService.CreateGoogleUrl(Model.Name)">Подробнее</a>
+                <a href="@CommonService.CreateGoogleUrl(Model.Name)">More info</a>
             }
         </div>
     </div>
 
-    <div class="mt-5 pt-2 border-top">
+    @if (Request.QueryString.Count != 0)
+    {
+        <div class="row">
+            <div class="col">
+                @Html
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    }
+
+    <div class="mt-2 pt-2 border-top">
         <h2 class="text-center">PSYCHOMATRIX</h2>
         <table class="table table-bordered text-center">
             <tr>
@@ -87,13 +100,12 @@
         </table>
     </div>
 
-    <h2>Like most people</h2>
-    <div class="border-bottom mt-2 mb-3"></div>
-    <div class="row text-center align-content-center">
-
-        @if (Request.QueryString["isFamouse"] != "true")
-        {
-            foreach (UserViewModel famouse in Model.SameStars[0])
+    @if (Request.QueryString["isFamouse"] != "true")
+    {
+        <h2>Similar people</h2>
+        <div class="border-bottom mt-2 mb-3"></div>
+        <div class="row text-center align-content-center mb-3">
+            @foreach (UserViewModel famouse in Model.SameStars[0])
             {
                 <div class="col">
                     <a href="~/home/userpage/@famouse.Id?isFamouse=true">
@@ -103,46 +115,60 @@
                     </a>
                 </div>
             }
-        }
-    </div>
-    <div class="mt-3"></div>
+        </div>
+        <div class="row">
+            <div class="col text-right">
+                <a class="" href="#buyModal" data-toggle="modal" data target="#buyModal">More celebties...</a>
+            </div>
+        </div>
+    }
 
     <h2>Strengths</h2>
     @foreach (KeyValuePair<int, int> pair in Model.SquarePersent)
     {
         if (pair.Value >= 50)
         {
-            <div class="row border-bottom mt-2 mb-2">
-                <div class="col-7">
-                    <h4>@Constants.NamesEn[pair.Key]</h4>
+            <div class="card mt-2">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            @Constants.NamesEn[pair.Key]
+                        </div>
+                        <div class="col">
+                            <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-5">
-                    <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                <div class="card-body">
+                    <div class="card-text">
+                        @Model.Descriptions[pair.Key].Details
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <p>@Model.Descriptions[pair.Key].Details</p>
-                </div>
-            </div>
+
             if (Model.SameStars != null)
             {
-                <div class="mt-2"></div>
-                <h6 class="mt-2">People with the same type:</h6>
-                <div class="row text-center align-content-center">
+                <div class="mb-4">
+                    <h6 class="mt-2">People with the same type:</h6>
+                    <div class="row text-center align-content-center">
 
-                    @foreach (UserViewModel famouse in Model.SameStars[pair.Key])
-                    {
-                        <div class="col">
-                            <a href="~/home/userpage/@famouse.Id?isFamouse=true">
-                                <img src="@famouse.PhotoUrl" class="round">
-                                <h6 class="mt-1">@famouse.Name</h6>
-                                <p class="text-black-50">@famouse.Details</p>
-                            </a>
+                        @foreach (UserViewModel famouse in Model.SameStars[pair.Key])
+                        {
+                            <div class="col">
+                                <a href="~/home/userpage/@famouse.Id?isFamouse=true">
+                                    <img src="@famouse.PhotoUrl" class="round">
+                                    <h6 class="mt-1">@famouse.Name</h6>
+                                    <p class="text-black-50">@famouse.Details</p>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <a class="" href="#buyModal" data-toggle="modal" data target="#buyModal">More celebties...</a>
                         </div>
-                    }
+                    </div>
                 </div>
-                <div class="mt-5"></div>
             }
         }
         else
@@ -151,51 +177,77 @@
         }
     }
 
-    <div class="mt-4"></div>
 
     <h2>Weaknesses</h2>
     @foreach (KeyValuePair<int, int> pair in Model.SquarePersent)
     {
         if (pair.Value < 50)
         {
-            <div class="row border-bottom mt-2 mb-2">
-                <div class="col-7">
-                    <h4>@Constants.NamesEn[pair.Key]</h4>
+            <div class="card mt-2">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            @Constants.NamesEn[pair.Key]
+                        </div>
+                        <div class="col">
+                            <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-5">
-                    <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <p>@Model.Descriptions[pair.Key].Details</p>
+                <div class="card-body">
+                    <div class="card-text">
+                        @Model.Descriptions[pair.Key].Details
+                    </div>
                 </div>
             </div>
 
             if (Model.SameStars != null)
             {
-                <div class="mt-2"></div>
-                <h6 class="mt-2">People with the same type:</h6>
-                <div class="row text-center align-content-center">
+                <div class="mb-4">
+                    <h6 class="mt-2">People with the same type:</h6>
+                    <div class="row text-center align-content-center">
 
-                    @foreach (UserViewModel famouse in Model.SameStars[pair.Key])
-                    {
-                        <div class="col">
-                            <a href="~/home/userpage/@famouse.Id?isFamouse=true">
-                                <img src="@famouse.PhotoUrl" class="round">
-                                <h6 class="mt-1">@famouse.Name</h6>
-                                <p class="text-black-50">@famouse.Details</p>
-                            </a>
+                        @foreach (UserViewModel famouse in Model.SameStars[pair.Key])
+                        {
+                            <div class="col">
+                                <a href="~/home/userpage/@famouse.Id?isFamouse=true">
+                                    <img src="@famouse.PhotoUrl" class="round">
+                                    <h6 class="mt-1">@famouse.Name</h6>
+                                    <p class="text-black-50">@famouse.Details</p>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <a class="" href="#buyModal" data-toggle="modal" data target="#buyModal">More celebties...</a>
                         </div>
-                    }
+                    </div>
                 </div>
-                <div class="mt-5"></div>
             }
-
-            <div class="mt-5"></div>
-
         }
     }
+
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Try premium</h4>
+                    <button class="close" type="button" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Search among 100,000 celebrities!</li>
+                        <li>Detailed description of your Psychmatrix</li>
+                        <li>And much more</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Buy for 0.99$</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @*<div class="mt-5 pt-2">
             <h2>Дополнительная информация</h2>

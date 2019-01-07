@@ -6,10 +6,10 @@
 
     using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
     {
-        <div id="socialLoginList">
+        <div id="socialLoginList" class="col-md-10">
             @foreach (AuthenticationDescription p in loginProviders)
             {
-                <button type="submit" class="btn btn-primary mt-2" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Войти с помощью учетной записи @p.Caption">@p.AuthenticationType</button>
+                <button type="submit" class="btn btn-primary col-5 col-md-2 mt-2" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType">@p.AuthenticationType</button>
             }
         </div>
 

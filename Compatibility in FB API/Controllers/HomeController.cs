@@ -30,6 +30,8 @@ namespace MatchUp.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult UserPage(int id = 0, bool isFamouse = false)
         {
             if (id == 0)
@@ -69,6 +71,7 @@ namespace MatchUp.Controllers
 
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Comtibility(int id = 0)
         {
@@ -88,6 +91,7 @@ namespace MatchUp.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Comtibility(int year, int month, int day)
         {
@@ -108,6 +112,7 @@ namespace MatchUp.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult CompatibilityInPerson(int id, bool isFamouse = false)
         {
@@ -133,6 +138,7 @@ namespace MatchUp.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Comapare(int id, bool isFamouse = false)
         {
@@ -164,12 +170,14 @@ namespace MatchUp.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Search()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Search(string name)
         {

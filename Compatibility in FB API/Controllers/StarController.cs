@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 
 namespace MatchUp.Controllers
 {
+    [Authorize]
     public class StarController : Controller
     {
         private readonly StarService starService = new StarService();

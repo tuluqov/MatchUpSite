@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 
 namespace MatchUp.Controllers
 {
+    [Authorize]
     public class PersonController : Controller
     {
         private readonly PersonService personService = new PersonService();
@@ -19,10 +20,9 @@ namespace MatchUp.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPerson(Person model, int year, int month, int day)
+        public ActionResult AddPerson(Person model)
         {
             model.IdUser = User.Identity.GetUserId();
-            model.Birthday = new DateTime(year, month, day);
 
             personService.Add(model);
 

@@ -14,7 +14,7 @@
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
             m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
         })
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
@@ -49,6 +49,9 @@
                         <li class="nav-item">
                             @Html.ActionLink("Celebrities", "Stars", "Star", null, new { @class = "nav-link" })
                         </li>
+                        <li>
+                            @Html.ActionLink("Search", "Search", "Home", null, new { @class = "nav-link", id = "registerLink" })
+                        </li>
                         <li class="nav-item">
                             @Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "nav-link" })
                         </li>
@@ -66,30 +69,10 @@
             </div>
         </div>
     </nav>
-    <div class="mt-3 mb-3">
+    <div class="mt-3">
         @RenderBody()
     </div>
 
-    <footer class="footer modal-footer pt-4">
-        <div class="container-fluid text-center text-md-left">
-            <div class="row">
-                <div class="col-md-6 mt-md-0 mt-3">
-                    <a href="/Person/AddPerson" class="text-uppercase font-weight-bold">Add people</a>
-                    <p>Add new people to see their Psyhomatrix (family, friends, colleagues)</p>
-                </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-6 mb-md-0 mb-3">
-                    <a href="/Star/Stars" class="text-uppercase font-weight-bold">Search</a>
-                    <p>Search among 100,000 celebrities by name and compare yourself with them</p>
-                </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-6 mb-md-0 mb-3">
-                    <a href="#" class="text-uppercase font-weight-bold">About</a>
-                    <p>Find out more about Psyhomatrix and leave your feedback</p>
-                </div>
-            </div>
-        </div>
-    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)

@@ -9,9 +9,11 @@
     <div class="form-group">
         @using (Html.BeginForm("Search", "Home", FormMethod.Post))
         {
-            <div class="form-row">
-                <input class="col m-1" type="text" name="name" placeholder="Enter name" />
-                <input class="col-3 btn btn-primary" type="submit" value="Search" />
+            <div class="form-group">
+                <div class="form-row">
+                    <input class="col m-1 form-control" type="text" name="name" placeholder="Enter name" />
+                    <input class="col-3 btn btn-primary" type="submit" value="Search" />
+                </div>
             </div>
         }
         

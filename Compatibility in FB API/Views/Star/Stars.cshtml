@@ -1,4 +1,5 @@
-﻿@using MatchUp.Models
+﻿@using System.Globalization
+@using MatchUp.Models
 @model CompareWithFamouseViewModel
 
 @{
@@ -12,8 +13,8 @@
             <img src="@Model.Person.PhotoUrl" class="round">
         </div>
         <div class="col-8 col-md-8 mt-3">
-            <h2>@Model.Person.Name</h2>
-            <h2>@Model.Person.Birthday.ToString("d")</h2>
+            <h6>@Model.Person.Name</h6>
+            <h6>@Model.Person.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
         </div>
     </div>
     <div>
@@ -21,6 +22,9 @@
             <div class="nav nav-tabs pt-3" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-similar" role="tab" aria-controls="nav-home" aria-selected="true">Similar</a>
                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-compatibility" role="tab" aria-controls="nav-compatbility" aria-selected="false">Compatible</a>
+                <a class="nav-item nav-link" id="nav-search-tab" data-toggle="tab" href="#nav-search" role="tab" aria-controls="nav-search" aria-selected="false">
+                    <img src="https://img.icons8.com/ios/25/000000/search-filled.png" />
+                </a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -50,8 +54,8 @@
                             </div>
                             <div class="row">
                                 <div class="col text-center">
-                                    @Html.ActionLink("Compatibility", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    @Html.ActionLink("Compare", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
                                 </div>
                             </div>
                         </div>
@@ -78,12 +82,26 @@
                             </a>
                             <div class="row">
                                 <div class="col text-center">
-                                    @Html.ActionLink("Compatibility", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    @Html.ActionLink("Compare", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
+                                    @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
                                 </div>
                             </div>
                         </div>
                     }
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
+                <div class="form-group mt-3">
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <div class="form-row">
+                                <input class="col m-1 form-control" type="text" name="name" placeholder="Enter name" />
+                                <input class="col-3 btn btn-primary" type="submit" value="Search" />
+                            </div>
+                        </div>
+                    }
+        
                 </div>
             </div>
         </div>

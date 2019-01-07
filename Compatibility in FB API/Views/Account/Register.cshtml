@@ -1,6 +1,7 @@
 ﻿@model MatchUp.Models.RegisterViewModel
 @{
     ViewBag.Title = "Sign up";
+    Layout = "../Shared/_AccountLayout.cshtml";
 }
 
 <div class="container">
@@ -13,25 +14,25 @@
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(m => m.Name, new { @class = "col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 col">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control col-md-4" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Email, new { @class = "col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 col">
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-md-4" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Password, new { @class = "col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 col">
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control col-md-4" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-10 col">
                 @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control col-md-4" })
             </div>
         </div>
@@ -43,14 +44,14 @@
             </div>*@
         <div class="form-group">
             @Html.LabelFor(m => m.Birthday, new { @class = "col-md-2" })
-            <div class="col-md-10">
-                <input type="date" name="Birthday" id="Birthday"/>
+            <div class="col-md-10 col">
+                <input class="form-control col-md-4" type="date" name="Birthday" id="Birthday"/>
 
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" class="btn btn-primary" value="Register" />
+            <div class="col-md-10 col">
+                <input type="submit" class="btn btn-primary col-md-2 col-5" value="Register" />
             </div>
         </div>
     }

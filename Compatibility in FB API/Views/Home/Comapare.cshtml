@@ -1,4 +1,4 @@
-﻿@using MatchUp.Services
+﻿@using System.Globalization
 @using MatchUp.Shared
 @model MatchUp.Models.CompatibilityViewModel
 
@@ -11,26 +11,26 @@
     <div class="row sticky-card">
         <div class="col text-center">
             <a href="~/home/userpage/@Model.User1.Id">
-                <img src="@Model.User1.PhotoUrl" class="round mb-2 mt-2">
-                <h4>@Model.User1.Name</h4>
-                <h4>@Model.User1.Birthday.ToString("d")</h4>
+                <img src="@Model.User1.PhotoUrl" class="round-small mb-2 mt-2">
+                <h6>@Model.User1.Name</h6>
+                <h6>@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
             </a>
         </div>
         <div class="col text-center">
             @if (Request.QueryString["isFamouse"] == "True")
             {
                 <a href="~/home/userpage/@Model.User2.Id?isFamouse=true">
-                    <img src="@Model.User2.PhotoUrl" class="round mb-2 mt-2">
-                    <h4>@Model.User2.Name</h4>
-                    <h4>@Model.User2.Birthday.ToString("d")</h4>
+                    <img src="@Model.User2.PhotoUrl" class="round-small mb-2 mt-2">
+                    <h6>@Model.User2.Name</h6>
+                    <h6>@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             }
             else
             {
                 <a href="~/home/userpage/@Model.User2.Id">
-                    <img src="~/Content/img/ava.png" class="round mb-2 mt-2">
-                    <h4>@Model.User2.Name</h4>
-                    <h4>@Model.User2.Birthday.ToString("d")</h4>
+                    <img src="~/Content/img/ava.png" class="round-small mb-2 mt-2">
+                    <h6>@Model.User2.Name</h6>
+                    <h6>@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             }
 
@@ -57,7 +57,7 @@
     }
     <div class="row">
         <div class="col text-center">
-            <div class="btn btn-primary btn-lg mt-4">Поделиться</div>
+            <div class="btn btn-primary btn-lg mt-4 col-5">Share</div>
         </div>
     </div>
 </div>
