@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using MatchUp.Models;
 using MatchUp.Services;
 using MatchUp.Shared;
+using Microsoft.AspNet.Identity;
 
 namespace MatchUp.Controllers
 {
@@ -50,7 +51,13 @@ namespace MatchUp.Controllers
             {
                 if (!isFamouse)
                 {
-                    var person = personService.GetById(id);
+                    var person = personService.GetById(id, User.Identity.GetUserId());
+
+                    if (person == null)
+                    {
+                        return HttpNotFound();
+                    }
+
                     var personModel = Mapper.ToUser(person);
 
                     personModel.SameStars = Mapper.ToSameUsers(starService.GetSimilarStars(person.MatrixId.Value));
@@ -62,6 +69,11 @@ namespace MatchUp.Controllers
                 }
 
                 var personFamouse = Mapper.ToUser(starService.GetById(id));
+
+                if (personFamouse == null)
+                {
+                    return HttpNotFound();
+                }
 
                 personFamouse.SquarePersent = calculator.GetPercent(personFamouse.PythagorianMatrix);
                 personFamouse.Descriptions = descriptionService.GetDescriptions(personFamouse.PythagorianMatrix);
@@ -83,7 +95,7 @@ namespace MatchUp.Controllers
             CompatibilityViewModel model = new CompatibilityViewModel
             {
                 User1 = Mapper.ToUser(userService.GetCurrentUser(User)),
-                User2 = Mapper.ToUser(personService.GetById(id))
+                User2 = Mapper.ToUser(personService.GetById(id, User.Identity.GetUserId()))
             };
 
             calculator.CalculateAll(model.User2);
@@ -121,7 +133,7 @@ namespace MatchUp.Controllers
                 CompatibilityViewModel model = new CompatibilityViewModel
                 {
                     User1 = Mapper.ToUser(userService.GetCurrentUser(User)),
-                    User2 = Mapper.ToUser(personService.GetById(id))
+                    User2 = Mapper.ToUser(personService.GetById(id, User.Identity.GetUserId()))
                 };
                 
                 return View("Comtibility", model);
@@ -160,7 +172,7 @@ namespace MatchUp.Controllers
                 CompatibilityViewModel model = new CompatibilityViewModel
                 {
                     User1 = Mapper.ToUser(userService.GetCurrentUser(User)),
-                    User2 = Mapper.ToUser(personService.GetById(id))
+                    User2 = Mapper.ToUser(personService.GetById(id, User.Identity.GetUserId()))
                 };
 
                 model.User1.SquarePersent = calculator.GetPercent(model.User1.PythagorianMatrix);

@@ -44,6 +44,9 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
+                            @Html.ActionLink("My Psychomatrix", "UserPage", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
                             @Html.ActionLink("My people list", "AddPerson", "Person", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
@@ -71,11 +74,11 @@
     </div>
 
     <footer class="footer modal-footer pt-4">
-        <div class="container-fluid text-center text-md-left">
+        <div class="container text-center text-md-left">
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
                     <a href="/Person/AddPerson" class="text-uppercase font-weight-bold">Add people</a>
-                    <p>Add new people to see their Psyhomatrix (family, friends, colleagues)</p>
+                    <p>Add new people to see their Psychomatrix (family, friends, colleagues)</p>
                 </div>
                 <hr class="clearfix w-100 d-md-none pb-3">
                 <div class="col-md-6 mb-md-0 mb-3">
@@ -85,7 +88,7 @@
                 <hr class="clearfix w-100 d-md-none pb-3">
                 <div class="col-md-6 mb-md-0 mb-3">
                     <a href="#" class="text-uppercase font-weight-bold">About</a>
-                    <p>Find out more about Psyhomatrix and leave your feedback</p>
+                    <p>Find out more about Psychomatrix and leave your feedback</p>
                 </div>
             </div>
         </div>
@@ -94,5 +97,10 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
     <script src="~/Scripts/Site/Site.js"></script>
+    <script>
+        $('#confirm-delete').on('show.bs.modal', function (e) {
+            $(this).find('.btn-danger').attr('href', $(e.relatedTarget).data('href'));
+        });
+    </script>
 </body>
 </html>

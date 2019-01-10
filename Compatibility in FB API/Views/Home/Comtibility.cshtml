@@ -15,8 +15,8 @@
             <div class="col text-center">
                 <a href="~/home/userpage/@Model.User1.Id">
                     <img src="@Model.User1.PhotoUrl" class="round mb-2 mt-2">
-                    <h6>@Model.User1.Name</h6>
-                    <h6>@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                    <h6 class="font-weight-light">@Model.User1.Name</h6>
+                    <h6 class="font-weight-light">@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             </div>
             <div class="col text-center">
@@ -24,22 +24,22 @@
                 {
                     <a href="~/home/userpage/@Model.User2.Id?isFamouse=true">
                         <img src="@Model.User2.PhotoUrl" class="round mb-2 mt-2">
-                        <h6>@Model.User2.Name</h6>
-                        <h6>@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                        <h6 class="font-weight-light">@Model.User2.Name</h6>
+                        <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                     </a>
                 }
                 else
                 {
                     <a href="~/home/userpage/@Model.User2.Id">
                         <img src="~/Content/img/ava.png" class="round mb-2 mt-2">
-                        <h6>@Model.User2.Name</h6>
-                        <h6>@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                        <h6 class="font-weight-light">@Model.User2.Name</h6>
+                        <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                     </a>
                 }
 
             </div>
         </div>
-        <div class="card mt-2">
+        <div class="card border-light mt-2 shadow bg-white rounded">
             @if (!(Math.Abs(Model.User1.PythagorianMatrix.CharacterWill.Count(x => x == '1') - Model.User2.PythagorianMatrix.CharacterWill.Count(x => x == '1')) > 2 &&
                 Math.Abs(Model.User1.PythagorianMatrix.CharacterWill.Count(x => x == '1') - Model.User2.PythagorianMatrix.CharacterWill.Count(x => x == '1')) < 5))
             {
@@ -68,7 +68,7 @@
             }
         </div>
 
-        <div class="card mt-2">
+        <div class="card border-light mt-2 shadow bg-white rounded">
             @if (!(Math.Abs(Model.User1.SecondaryAbilities.Temperament - Model.User2.SecondaryAbilities.Temperament) < 2))
             {
                 <div class="card-header">
@@ -96,7 +96,7 @@
 
         </div>
 
-        <div class="card mt-2">
+        <div class="card border-light mt-2 shadow bg-white rounded">
             @if (!(Math.Abs(Model.User1.SecondaryAbilities.DomesticBliss - Model.User2.SecondaryAbilities.DomesticBliss) < 2))
             {
                 <div class="card-header">

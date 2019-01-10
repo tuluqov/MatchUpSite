@@ -48,8 +48,23 @@
         <div class="row">
             @foreach (UserViewModel person in ViewBag.Persons)
             {
-                <div class="col-sm-4">
-                    <div class="card text-center mt-2">
+                <div class="col col-md-4">
+                    <div class="card border-light shadow bg-white text-center mt-2">
+                        <div class="card-header-pills mx-2 mt-1">
+                            <div class="row text-right">
+                                <div class="col-9"></div>
+                                <div class="col-1">
+                                    <a href="/Person/Edit/?id=@person.Id">
+                                        <img src="https://img.icons8.com/ios/20/000000/edit.png">
+                                    </a>
+                                </div>
+                                <div class="col-1">
+                                    <a href="#" data-href="/Person/Delete/?id=@person.Id" data-toggle="modal" data-target="#confirm-delete">
+                                        <img src="https://img.icons8.com/ios/20/000000/delete-sign.png">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <a href="/home/userpage/@person.Id">
                                 <div class="row mb-3">
@@ -64,7 +79,7 @@
                                     </div>
                                 </div>
                             </a>
-                            @Html.ActionLink("Compatibility ❤️", "Comtibility", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary col-6" })
+                            @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary col-6" })
                             @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary col-5" })
                         </div>
                     </div>
@@ -72,4 +87,23 @@
             }
         </div>
     </div>
+
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title font-weight-light text-center" id="exampleModalLabel">Are you sure you want to delete it?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger">Delete</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 </div>

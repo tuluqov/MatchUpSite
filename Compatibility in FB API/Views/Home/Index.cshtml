@@ -4,19 +4,18 @@
 }
 
 <div class="container content">
-    <div class="row pt-5">
-        <div class="col text-center">
-            <h1>Personality analysis by date of birth</h1>
+    <div class="jumbotron">
+            <h3 class="display-4" style="font-size: 3rem;">Personality analysis by date of birth</h3>
+            <p class="lead"></p>
             <div class="row">
                 <div class="col text-center">
-                    @Html.ActionLink("Sign in (Facebook)", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
+                    @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
                 </div>
             </div>
             <div class="row">
                 <div class="col text-center">
-                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
+                    @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
                 </div>
             </div>
-        </div>
     </div>
 </div>

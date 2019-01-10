@@ -8,12 +8,12 @@
 }
 
 <div class="container">
-    <div class="row sticky-card">
+    <div class="row sticky-card shadow bg-white rounded">
         <div class="col text-center">
             <a href="~/home/userpage/@Model.User1.Id">
                 <img src="@Model.User1.PhotoUrl" class="round-small mb-2 mt-2">
-                <h6>@Model.User1.Name</h6>
-                <h6>@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                <h6 class="font-weight-light">@Model.User1.Name</h6>
+                <h6 class="font-weight-light">@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
             </a>
         </div>
         <div class="col text-center">
@@ -21,16 +21,16 @@
             {
                 <a href="~/home/userpage/@Model.User2.Id?isFamouse=true">
                     <img src="@Model.User2.PhotoUrl" class="round-small mb-2 mt-2">
-                    <h6>@Model.User2.Name</h6>
-                    <h6>@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                    <h6 class="font-weight-light">@Model.User2.Name</h6>
+                    <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             }
             else
             {
                 <a href="~/home/userpage/@Model.User2.Id">
                     <img src="~/Content/img/ava.png" class="round-small mb-2 mt-2">
-                    <h6>@Model.User2.Name</h6>
-                    <h6>@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                    <h6 class="font-weight-light">@Model.User2.Name</h6>
+                    <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             }
 

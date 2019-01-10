@@ -115,5 +115,31 @@ namespace MatchUp.Shared
 
             return person;
         }
+
+        public static Person ToPerson(PersonEditViewModel model)
+        {
+            Person person = new Person
+            {
+                Id = model.Id,
+                IdUser = model.IdUser,
+                Name = model.Name,
+                Birthday = model.Birthday
+            };
+
+            return person;
+        }
+
+        public static PersonEditViewModel ToPersonEditView(Person person)
+        {
+            PersonEditViewModel model = new PersonEditViewModel
+            {
+                Id = person.Id,
+                IdUser = person.IdUser,
+                Name = person.Name,
+                Birthday = person.Birthday,
+            };
+
+            return model;
+        }
     }
 }

@@ -13,8 +13,8 @@
             <img src="@Model.Person.PhotoUrl" class="round">
         </div>
         <div class="col-8 col-md-8 mt-3">
-            <h6>@Model.Person.Name</h6>
-            <h6>@Model.Person.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+            <h6 class="lead">@Model.Person.Name</h6>
+            <h6 class="font-weight-light">@Model.Person.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
         </div>
     </div>
     <div>
@@ -29,79 +29,90 @@
         </nav>
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-similar" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="mt-2 pt-2">
-                    @foreach (UserViewModel user in ViewBag.Ok)
-                    {
-                        <div class="border-bottom mb-2 pb-2 pt-2">
-                            <a href="/home/userpage/@user.Id?isFamouse=true">
-                                <div class="row mb-2">
-                                    <div class="col-4">
-                                        <img src="@user.PhotoUrl" class="round">
-                                    </div>
-                                    <div class="col-8 ">
-                                        <div class="pt-3">
-                                            <h4>@user.Name</h4>
-                                            <h6 class="text-black-50">@user.Details</h6>
+                <div class="mt-2 pt-3">
+                    <div class="row">
+                        @foreach (UserViewModel user in ViewBag.Ok)
+                        {
+                            <div class="col col-md-4">
+                                <div class="card border-light shadow bg-white text-center mt-2">
+                                    <div class="card-body">
+                                        <a href="/home/userpage/@user.Id?isFamouse=true">
+                                            <div class="row mb-3">
+                                                <div class="col-4">
+                                                    <img src="@user.PhotoUrl" class="round">
+                                                </div>
+                                                <div class="col-8 text-center pt-2">
+                                                    <div class="card-title">
+                                                        <h5>@user.Name</h5>
+                                                    </div>
+                                                    <p>@user.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div>
+                                            <h6 class="text-left">Similarity @user.SimilarPercent%</h6>
+                                            <div class="progress mb-2" style="height: 20px;">
+                                                <div class="progress-bar" role="progressbar" style="width: @user.SimilarPercent%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
                                         </div>
+                                        @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-6" })
+                                        @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-5" })
+
                                     </div>
                                 </div>
-                            </a>
-                            <div>
-                                <h6>Similarity @user.SimilarPercent%</h6>
-                                <div class="progress mb-2" style="height: 20px;">
-                                    <div class="progress-bar" role="progressbar" style="width: @user.SimilarPercent%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col text-center">
-                                    @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                </div>
-                            </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-compatibility" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div class="mt-2 pt-2">
-                    @foreach (UserViewModel user in ViewBag.Compatibility)
-                    {
-                        <div class="border-bottom mb-2 pb-2 pt-2">
-                            <a href="/home/userpage/@user.Id?isFamouse=true">
-                                <div class="row mb-2">
-                                    <div class="col-4">
-                                        <img src="@user.PhotoUrl" class="round">
+                <div class="mt-2 pt-3">
+                    <div class="row">
+                        @foreach (UserViewModel user in ViewBag.Compatibility)
+                        {
+                            <div class="col col-md-4">
+                                <div class="card border-light shadow bg-white text-center mt-2">
+                                    <div class="card-body">
+                                        <a href="/home/userpage/@user.Id?isFamouse=true">
+                                            <div class="row mb-3">
+                                                <div class="col-4">
+                                                    <img src="@user.PhotoUrl" class="round">
+                                                </div>
+                                                <div class="col-8 text-center pt-2">
+                                                    <div class="card-title">
+                                                        <h5>@user.Name</h5>
+                                                    </div>
+                                                    <p>@user.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-6" })
+                                        @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-5" })
+
                                     </div>
-                                    <div class="col-8 ">
-                                        <div class="pt-3">
-                                            <h4>@user.Name</h4>
-                                            <h6 class="text-black-50">@user.Details</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="row">
-                                <div class="col text-center">
-                                    @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
-                                    @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary m-1 col-5" })
                                 </div>
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-search" role="tabpanel" aria-labelledby="nav-search-tab">
-                <div class="form-group mt-3">
-                    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
-                    {
-                        <div class="form-group">
-                            <div class="form-row">
-                                <input class="col m-1 form-control" type="text" name="name" placeholder="Enter name" />
-                                <input class="col-3 btn btn-primary" type="submit" value="Search" />
+                <div class="mt-2 pt-3">
+                    <div class="row">
+                        <div class="col card border-light shadow bg-white text-center mt-2">
+                            <div class="form-group mt-4">
+                                @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                                {
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            <input class="col m-1 form-control" type="text" name="name" placeholder="Enter name" />
+                                            <input class="col-3 btn btn-primary" type="submit" value="Search" />
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
-                    }
-        
+                    </div>
                 </div>
             </div>
         </div>
