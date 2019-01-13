@@ -11,29 +11,12 @@
     <title>@ViewBag.Title - Personal birthday analysis</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(51802886, "init", {
-            id: 51802886,
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/51802886" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+    <link href="~/Content/SignUpForm.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #fed6e3 !important;">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand text-dark navbar-text" href="/">
                 Match⭕Up
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +56,7 @@
         @RenderBody()
     </div>
 
-    <footer class="footer modal-footer pt-4">
+    @*<footer class="footer modal-footer pt-4">
         <div class="container text-center text-md-left">
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
@@ -92,11 +75,12 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
     <script src="~/Scripts/Site/Site.js"></script>
+    <script src="~/Scripts/Site/SignUpForm.js"></script>
     <script>
         $('#confirm-delete').on('show.bs.modal', function (e) {
             $(this).find('.btn-danger').attr('href', $(e.relatedTarget).data('href'));

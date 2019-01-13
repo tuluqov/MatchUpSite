@@ -1,0 +1,19 @@
+// ======================================================== //
+// 	Plugins
+// ======================================================== //
+
+https://owlcarousel2.github.io/OwlCarousel2/
+
+
+// ======================================================== //
+// 	Images
+// ======================================================== //
+
+Demo mockups from these great Dribble shots:
+
+https://dribbble.com/shots/2466585-Daily-UI-challenge-037-Weather
+https://dribbble.com/shots/2406438-Daily-UI-challenge-030-Pricing
+https://dribbble.com/shots/2639709-Confirm-Reservation
+https://dribbble.com/shots/2724104-Task-Log
+https://dribbble.com/shots/2721854-stroke
+https://dribbble.com/shots/2646724-Daily-Planner-dailyui-05

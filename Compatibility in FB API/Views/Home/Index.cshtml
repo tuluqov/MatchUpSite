@@ -3,19 +3,74 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<div class="container content">
+@*<div class="container content">
     <div class="jumbotron">
-            <h3 class="display-4" style="font-size: 3rem;">Personality analysis by date of birth</h3>
-            <p class="lead"></p>
-            <div class="row">
-                <div class="col text-center">
-                    @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
-                </div>
+        <h3 class="display-4" style="font-size: 3rem;">Personality analysis by date of birth</h3>
+        <p class="lead"></p>
+        <div class="row">
+            <div class="col text-center">
+                @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
             </div>
-            <div class="row">
-                <div class="col text-center">
-                    @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
-                </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
             </div>
+        </div>
     </div>
+</div>*@
+<div class="overlay">
+    <form class="main-form">
+        <div class="con p-3">
+            <header class="head-form">
+                <h2 id="str1">Personality analysis by date of birth</h2>
+            </header>
+            <br>
+            <div class="field-set">
+                <header class="head-form">
+                    <h2>Sign Up</h2>
+                    <p>registration here use your date of birth for analisis</p>
+                </header>
+                <input class="form-input" id="txt-input" type="text" placeholder="UserName" required> <br>
+                <input class="form-input" type="password" placeholder="Password" id="pwd" name="Password" required>
+                <input class="form-input" type="date" placeholder="Birthday" name="Birthday" required>
+                <br>
+                <button class="btn submits sign-up button-form">
+                    Sign Up
+                </button>
+                <button class="log-in button-form"> Log In </button>
+            </div>
+        </div>
+
+    </form>
+
+        @*<form>
+            <div class="container">
+                <div class="row">
+                    <div class="col border-right">
+                        <header class="head-form">
+                            <h2>Personality analysis by date of birth</h2>
+                        </header>
+                    </div>
+                    <div class="col">
+                        <div class="field-set">
+                            <header class="head-form">
+                                <h2>Log In</h2>
+                                <p>login here using your username and password</p>
+                            </header>
+                            <input class="form-input" id="txt-input" type="text" placeholder="UserName" required> <br>
+                            <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
+                            <br>
+                            <button class="log-in button-form"> Log In </button>
+                            <button class="btn submits sign-up button-form">
+                                Sign Up
+
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>*@
 </div>

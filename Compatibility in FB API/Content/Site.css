@@ -110,3 +110,7 @@
 .content {
     height: 90vh;
 }
+
+.nav-link {
+    color: black !important;
+}

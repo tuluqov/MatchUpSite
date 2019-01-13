@@ -8,7 +8,7 @@
 <div class="container">
     <h2>@ViewBag.Title</h2>
 
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form" }))
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form", id = "main-form" }))
     {
         @Html.AntiForgeryToken()
         <hr />
