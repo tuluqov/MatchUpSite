@@ -8,26 +8,41 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="robots" content="all,follow">
+
     <title>@ViewBag.Title - Personal birthday analysis</title>
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/SignUpForm.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/Site.css">
+
+    <link rel="stylesheet" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="~/Content/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" href="~/Content/css/landy-iconfont.css">
+    <!-- Google fonts - Open Sans-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="~/Content/vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/vendor/owl.carousel/assets/owl.theme.default.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="~/Content/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="~/Content/css/custom.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #fed6e3 !important;">
-        <div class="container">
-            <a class="navbar-brand text-dark navbar-text" href="/">
-                Match⭕Up
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
+    <!-- navbar-->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <a href="/" class="navbar-brand">Match⭕Up</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("My Psychomatrix", "UserPage", "Home", null, new { @class = "nav-link" })
+                            @Html.ActionLink("My Psychomatrix", "UserPage", "Home", new { id = 0 }, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("My people list", "AddPerson", "Person", null, new { @class = "nav-link" })
@@ -41,50 +56,119 @@
                     }
                     else
                     {
-                        <li>
-                            @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "nav-link", id = "registerLink" })
+                        <li class="nav-item">
+                            <!-- Button trigger modal-->
+                            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
                         </li>
-                        <li>
-                            @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "nav-link", id = "registerLink" })
+                        <li class="nav-item">
+                            <!-- Button trigger modal-->
+                            <a href="#" data-toggle="modal" data-target="#signupModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign up</a>
                         </li>
                     }
                 </ul>
             </div>
-        </div>
-    </nav>
-    <div class="mt-3 mb-3">
-        @RenderBody()
+        </nav>
+    </header>
+    @RenderBody()
+    <div id="scrollTop">
+        <div class="d-flex align-items-center justify-content-end"><i class="fa fa-long-arrow-up"></i>To Top</div>
     </div>
-
-    @*<footer class="footer modal-footer pt-4">
-        <div class="container text-center text-md-left">
+    <footer class="main-footer">
+        <div class="container">
             <div class="row">
-                <div class="col-md-6 mt-md-0 mt-3">
-                    <a href="/Person/AddPerson" class="text-uppercase font-weight-bold">Add people</a>
-                    <p>Add new people to see their Psychomatrix (family, friends, colleagues)</p>
+                <div class="col-lg-3 col-md-6">
+                    <a href="#" class="brand">Landy</a>
+                    <ul class="contact-info list-unstyled">
+                        <li><a href="mailto:matchup.webapp@gmail.com">matchup.webapp@gmail.com</a></li>
+                        <li><a href="tel:123456789">+00 123 456 789</a></li>
+                    </ul>
+                    <ul class="social-icons list-inline">
+                        <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
                 </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-6 mb-md-0 mb-3">
-                    <a href="/Star/Stars" class="text-uppercase font-weight-bold">Search</a>
-                    <p>Search among 100,000 celebrities by name and compare yourself with them</p>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Selected Cases</h5>
+                    <ul class="links list-unstyled">
+                        <li> <a href="#">Guess Conntect</a></li>
+                        <li> <a href="#">Postly</a></li>
+                        <li> <a href="#">Iris Vor Arnim</a></li>
+                        <li> <a href="#">Yapital</a></li>
+                    </ul>
                 </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-6 mb-md-0 mb-3">
-                    <a href="#" class="text-uppercase font-weight-bold">About</a>
-                    <p>Find out more about Psychomatrix and leave your feedback</p>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Selected Cases</h5>
+                    <ul class="links list-unstyled">
+                        <li> <a href="#">Guess Conntect</a></li>
+                        <li> <a href="#">Postly</a></li>
+                        <li> <a href="#">Iris Vor Arnim</a></li>
+                        <li> <a href="#">Yapital</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Selected Cases</h5>
+                    <ul class="links list-unstyled">
+                        <li> <a href="#">Guess Conntect</a></li>
+                        <li> <a href="#">Postly</a></li>
+                        <li> <a href="#">Iris Vor Arnim</a></li>
+                        <li> <a href="#">Yapital</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </footer>*@
+        <div class="copyrights">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <p>&copy; 2019 Match-up.me</p>
+                    </div>
+                    <div class="col-md-5 text-right">
+                        <p>Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>  </p>
+                        <!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    @*<footer class="footer modal-footer pt-4">
+            <div class="container text-center text-md-left">
+                <div class="row">
+                    <div class="col-md-6 mt-md-0 mt-3">
+                        <a href="/Person/AddPerson" class="text-uppercase font-weight-bold">Add people</a>
+                        <p>Add new people to see their Psychomatrix (family, friends, colleagues)</p>
+                    </div>
+                    <hr class="clearfix w-100 d-md-none pb-3">
+                    <div class="col-md-6 mb-md-0 mb-3">
+                        <a href="/Star/Stars" class="text-uppercase font-weight-bold">Search</a>
+                        <p>Search among 100,000 celebrities by name and compare yourself with them</p>
+                    </div>
+                    <hr class="clearfix w-100 d-md-none pb-3">
+                    <div class="col-md-6 mb-md-0 mb-3">
+                        <a href="#" class="text-uppercase font-weight-bold">About</a>
+                        <p>Find out more about Psychomatrix and leave your feedback</p>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)
     <script src="~/Scripts/Site/Site.js"></script>
-    <script src="~/Scripts/Site/SignUpForm.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>*@
+    <script src="~/Content/vendor/jquery.cookie/jquery.cookie.js"></script>
+    <script src="~/Content/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/Scripts/Site/front.js"></script>
     <script>
-        $('#confirm-delete').on('show.bs.modal', function (e) {
-            $(this).find('.btn-danger').attr('href', $(e.relatedTarget).data('href'));
-        });
+        $('#confirm-delete').on('show.bs.modal',
+            function (e) {
+                $(this).find('.btn-danger').attr('href', $(e.relatedTarget).data('href'));
+            });
     </script>
 </body>
 </html>

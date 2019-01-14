@@ -2,40 +2,41 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Sign in now";
-    Layout = "../Shared/_AccountLayout.cshtml";
+    Layout = null;
 }
 
-<div class="container">
-    <h2>@ViewBag.Title</h2>
 
-    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form", id = "main-form" }))
-    {
-        @Html.AntiForgeryToken()
-        <hr />
-        <div class="form-group">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control col-md-4" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control col-md-4" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" class="btn btn-primary col-md-2 col-5" value="Sign in" />
-            </div>
-        </div>
-    }
 
-    <section id="socialLoginForm">
-        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-    </section>
+<div id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="exampleModalLabel" class="modal-title">Sign in</h5>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form", id = "signupform" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email)
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", id = "EmailLogin" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", id = "PasswordLogin" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit btn btn-primary btn-shadow btn-gradient">Signup</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+@*<section id="socialLoginForm">
+        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+    </section>*@

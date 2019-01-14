@@ -3,74 +3,78 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 
-@*<div class="container content">
-    <div class="jumbotron">
-        <h3 class="display-4" style="font-size: 3rem;">Personality analysis by date of birth</h3>
-        <p class="lead"></p>
-        <div class="row">
-            <div class="col text-center">
-                @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
+<!-- Modal-->
+@RenderPage("../Account/Login.cshtml")
+@RenderPage("../Account/Register.cshtml")
+<section id="hero" class="hero hero-home bg-gray">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-lg-6 text order-2 order-lg-1">
+                <h1>Personality analysis by date of birth</h1>
+                <p class="hero-text">Registration here use your date of birth for analisis</p>
+                <div class="CTA"><a href="#testimonials" class="btn btn-primary btn-shadow btn-gradient link-scroll">Discover More</a><a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#signupModal">Sign Up Now</a></div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col text-center">
-                @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
-            </div>
+            <div class="col-lg-6 order-1 order-lg-2">@*<img src="~/Content/img/Macbook.png" alt="..." class="img-fluid">*@</div>
         </div>
     </div>
-</div>*@
-<div class="overlay">
-    <form class="main-form">
-        <div class="con p-3">
-            <header class="head-form">
-                <h2 id="str1">Personality analysis by date of birth</h2>
-            </header>
-            <br>
-            <div class="field-set">
-                <header class="head-form">
-                    <h2>Sign Up</h2>
-                    <p>registration here use your date of birth for analisis</p>
-                </header>
-                <input class="form-input" id="txt-input" type="text" placeholder="UserName" required> <br>
-                <input class="form-input" type="password" placeholder="Password" id="pwd" name="Password" required>
-                <input class="form-input" type="date" placeholder="Birthday" name="Birthday" required>
-                <br>
-                <button class="btn submits sign-up button-form">
-                    Sign Up
-                </button>
-                <button class="log-in button-form"> Log In </button>
-            </div>
-        </div>
-
-    </form>
-
-        @*<form>
-            <div class="container">
-                <div class="row">
-                    <div class="col border-right">
-                        <header class="head-form">
-                            <h2>Personality analysis by date of birth</h2>
-                        </header>
-                    </div>
-                    <div class="col">
-                        <div class="field-set">
-                            <header class="head-form">
-                                <h2>Log In</h2>
-                                <p>login here using your username and password</p>
-                            </header>
-                            <input class="form-input" id="txt-input" type="text" placeholder="UserName" required> <br>
-                            <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
-                            <br>
-                            <button class="log-in button-form"> Log In </button>
-                            <button class="btn submits sign-up button-form">
-                                Sign Up
-
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                            </button>
-                        </div>
+</section>
+<section id="testimonials" class="testimonials">
+    <div class="container">
+        <header class="text-center no-margin-bottom">
+            <h2>Happy Clients</h2>
+            <p class="lead">There are many variations of passages of Lorem Ipsum available, but the majority have</p>
+        </header>
+        <div class="owl-carousel owl-theme testimonials-slider">
+            <div class="item-holder">
+                <div class="item">
+                    <div class="avatar"><img src="~/Content/img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                    <div class="text">
+                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Jessica Watson</strong>
                     </div>
                 </div>
             </div>
-
-        </form>*@
-</div>
+            <div class="item-holder">
+                <div class="item">
+                    <div class="avatar"><img src="~/Content/img/avatar-5.jpg" alt="..." class="img-fluid"></div>
+                    <div class="text">
+                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Sarrah Wood</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="item-holder">
+                <div class="item">
+                    <div class="avatar"><img src="~/Content/img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                    <div class="text">
+                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Jessica Watson</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="item-holder">
+                <div class="item">
+                    <div class="avatar"><img src="~/Content/img/avatar-5.jpg" alt="..." class="img-fluid"></div>
+                    <div class="text">
+                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Sarrah Wood</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="newsletter" class="newsletter bg-gray">
+    <div class="container text-center">
+        <h2>Subscribe to Newsletter</h2>
+        <p class="lead">There are many variation passages of lorem ipsum, but the majority have</p>
+        <div class="form-holder">
+            <form id="newsletterForm" action="#">
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email Address">
+                    <button type="submit" class="btn btn-primary btn-gradient submit">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -24,7 +24,7 @@ namespace MatchUp
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/"),
                 ExpireTimeSpan = TimeSpan.FromDays(15),
                 Provider = new CookieAuthenticationProvider
                 {
