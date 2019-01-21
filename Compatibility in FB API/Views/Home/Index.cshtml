@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "MatchUp";
     Layout = "../Shared/_Layout.cshtml";
 }
 
@@ -10,19 +10,32 @@
     <div class="container">
         <div class="row d-flex">
             <div class="col-lg-6 text order-2 order-lg-1">
-                <h1>Personality analysis by date of birth</h1>
+                <h1 id="main-text"></h1>
                 <p class="hero-text">Registration here use your date of birth for analisis</p>
-                <div class="CTA"><a href="#testimonials" class="btn btn-primary btn-shadow btn-gradient link-scroll">Discover More</a><a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#signupModal">Sign Up Now</a></div>
+                <div class="CTA">
+                    <a href="#" class="btn btn-primary btn-shadow btn-gradient" data-toggle="modal" data-target="#signupModal">Sign Up free</a>
+                    <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#signinModal">Sign in</a>
+                </div>
             </div>
-            <div class="col-lg-6 order-1 order-lg-2">@*<img src="~/Content/img/Macbook.png" alt="..." class="img-fluid">*@</div>
         </div>
     </div>
 </section>
-<section id="testimonials" class="testimonials">
+<section id="browser" class="browser">
+    <div class="container">
+        <div id="myTab" role="tablist" class="nav nav-tabs">
+            <div class="row">
+                <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">1</span>You enter your date of birth</a></div>
+                <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">2</span>Our site calculates your psychomatrix by the method of Pythagoras</a></div>
+                <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">3</span>You will learn very interesting things about yourself :)</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="testimonials" class="testimonials bg-gray">
     <div class="container">
         <header class="text-center no-margin-bottom">
             <h2>Happy Clients</h2>
-            <p class="lead">There are many variations of passages of Lorem Ipsum available, but the majority have</p>
+            <p class="lead">There are many variations of passages of personality analysis, but the majority have</p>
         </header>
         <div class="owl-carousel owl-theme testimonials-slider">
             <div class="item-holder">
@@ -64,10 +77,10 @@
         </div>
     </div>
 </section>
-<section id="newsletter" class="newsletter bg-gray">
+@*<section id="newsletter" class="newsletter bg-gray">
     <div class="container text-center">
         <h2>Subscribe to Newsletter</h2>
-        <p class="lead">There are many variation passages of lorem ipsum, but the majority have</p>
+        <p class="lead">By subscribing to the newsletter you will receive unique recommendations for understanding yourself</p>
         <div class="form-holder">
             <form id="newsletterForm" action="#">
                 <div class="form-group">
@@ -77,4 +90,22 @@
             </form>
         </div>
     </div>
-</section>
+</section>*@
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            window.dataLayer = window.dataLayer || [];
+            var form = document.getElementsByName('signupform');
+            if (form[0].addEventListener) {
+                form[0].addEventListener('submit',
+                    function (e) {
+                        dataLayer.push({
+                            'event': 'signupform'
+                        });
+                    });
+            }
+        })
+    </script>
+}

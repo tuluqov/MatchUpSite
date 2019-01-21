@@ -5,9 +5,10 @@
     ViewBag.Title = "Comtibility";
     Layout = "../Shared/_Layout.cshtml";
 }
+@Html.Partial("CompatbilityReadMore")
 <div class="container">
-    <div class="form-group border-bottom pt-2">
-        <h2>Comtibility</h2>
+    <div class="border-bottom pt-3">
+        <h4>Comtibility</h4>
     </div>
     @if (Model != null)
     {
@@ -15,8 +16,8 @@
             <div class="col text-center">
                 <a href="~/home/userpage/@Model.User1.Id">
                     <img src="@Model.User1.PhotoUrl" class="round mb-2 mt-2">
-                    <h6 class="font-weight-light">@Model.User1.Name</h6>
-                    <h6 class="font-weight-light">@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                    <h6 class="font-weight-light text-primary">@Model.User1.Name</h6>
+                    <h6 class="font-weight-light text-primary">@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             </div>
             <div class="col text-center">
@@ -24,16 +25,16 @@
                 {
                     <a href="~/home/userpage/@Model.User2.Id?isFamouse=true">
                         <img src="@Model.User2.PhotoUrl" class="round mb-2 mt-2">
-                        <h6 class="font-weight-light">@Model.User2.Name</h6>
-                        <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                        <h6 class="font-weight-light text-primary">@Model.User2.Name</h6>
+                        <h6 class="font-weight-light text-primary">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                     </a>
                 }
                 else
                 {
                     <a href="~/home/userpage/@Model.User2.Id">
                         <img src="~/Content/img/ava.png" class="round mb-2 mt-2">
-                        <h6 class="font-weight-light">@Model.User2.Name</h6>
-                        <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                        <h6 class="font-weight-light text-primary">@Model.User2.Name</h6>
+                        <h6 class="font-weight-light text-primary">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                     </a>
                 }
 
@@ -41,16 +42,17 @@
         </div>
         <div class="card border-light mt-2 shadow bg-white rounded">
             @if (!(Math.Abs(Model.User1.PythagorianMatrix.CharacterWill.Count(x => x == '1') - Model.User2.PythagorianMatrix.CharacterWill.Count(x => x == '1')) > 2 &&
-                Math.Abs(Model.User1.PythagorianMatrix.CharacterWill.Count(x => x == '1') - Model.User2.PythagorianMatrix.CharacterWill.Count(x => x == '1')) < 5))
+                   Math.Abs(Model.User1.PythagorianMatrix.CharacterWill.Count(x => x == '1') - Model.User2.PythagorianMatrix.CharacterWill.Count(x => x == '1')) < 5))
             {
                 <div class="card-header">
                     Compatible by character: (@Model.User1.PythagorianMatrix.CharacterWill:@Model.User2.PythagorianMatrix.CharacterWill)
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7Zpfb9JQGMbxK6nfwms/hYBOHf678ELvdIsJqLTQliUDNqZmcdkmmmwCJiZeuItplkjYNF5vjsSR6M3reWoPPSt/7Kn10My+yRP68p73vM8PSgbtEnHEEYd8UIJOzV4onp1JWuejJHhyLP45AMGaFpkoippNlqqO1fHhvBO0rpWp06pFSmvME7zdT5fOOHZHx72kdQ6L997W6MfXZ5ESPMEbPDp2R8eJBvneeUqNcpXqxbJSNSsVe3ZoIICYSVmUS5tKhZmACQ1k5dE8ZdMW7V/XlAozMTsGiUFCljqQmzod5hZp/4bneRmx3m5+iQ5uFQZqykAA8fPbLh29bgWDYT1HG017D8B46+reEcGINIyPXnUgEAxtNuRgfEBAakEgGRifEJB6EEiE2WwONyhCjFojaDIg0DijkhDQ5ECgYYYDQECTBYFE4+wxCAQ0eRBIgAkCAYUD8qZKvR2Deh/y9PxBMRgIM98HYVBBQDAbHuAFnqRBdl/p1Nt+bEsaRIA4dmpJwvRBHB/wJA3SeclehSAgHgjb+LDnhvV65AWBJzUg4wwHgJkMiGiU/WEcatTPGkHqQWCQfd3wZVBirVoQGQgunz3qQIJAcIm9Iz4zykC6c8vBILgEmMPswkBdGcjBbYO61nIwCC7Wa/9cZj+bvTVlIP9aMQhCFuRzRqOtq+4VkPa0TtvTbr7DjiGeo9bOuKcReveuDZ5WkFKQtaki5VJmP1+6ZJCedvPyRdMWz1HDGp6jF3vwXFToIA2zcOwidmmKGbvDPux3NVrNGPZAHEO1KwZpzDjP5y+btniOGtbwHL3YA8fYE3uLF7ExOzSQ7nsGYxVo/eFvtebczb9s5OndgvtNuV3XaeuJm39c0W3xHLV2Xevn6MUePMfefA5mYjav/TVIVPR/gvCboWtZgz690CKl1Zxhg/i6GYrALWA0RFIps+LY9BfR/IcB87RjL4444pCKROIXinxKROhJMmAAAAAASUVORK5CYII=">
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>У вас слабая совместимость по характеру, если часто возникают ссоры, стоит задуматься.</p>
-                    </blockquote>
+                    <p>
+                        You have a weak compatibility in nature, if there are often quarrels, it's worth thinking about.<br />
+                        <a href="#compatbilityReadMore" data-toggle="modal" data target="#compatbilityReadMore">Read more...</a>
+                    </p>
                 </div>
             }
             else
@@ -61,9 +63,10 @@
 
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>У вас отличная совместимость по характеру, по типу характера, это близкий вам человек.</p>
-                    </blockquote>
+                    <p>
+                        You have excellent compatibility in character, type of character, it is a close person to you.<br />
+                        <a href="#compatbilityReadMore" data-toggle="modal" data target="#compatbilityReadMore">Read more...</a>
+                    </p>
                 </div>
             }
         </div>
@@ -76,9 +79,10 @@
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7Zpfb9JQGMbxK6nfwms/hYBOHf678ELvdIsJqLTQliUDNqZmcdkmmmwCJiZeuItplkjYNF5vjsSR6M3reWoPPSt/7Kn10My+yRP68p73vM8PSgbtEnHEEYd8UIJOzV4onp1JWuejJHhyLP45AMGaFpkoippNlqqO1fHhvBO0rpWp06pFSmvME7zdT5fOOHZHx72kdQ6L997W6MfXZ5ESPMEbPDp2R8eJBvneeUqNcpXqxbJSNSsVe3ZoIICYSVmUS5tKhZmACQ1k5dE8ZdMW7V/XlAozMTsGiUFCljqQmzod5hZp/4bneRmx3m5+iQ5uFQZqykAA8fPbLh29bgWDYT1HG017D8B46+reEcGINIyPXnUgEAxtNuRgfEBAakEgGRifEJB6EEiE2WwONyhCjFojaDIg0DijkhDQ5ECgYYYDQECTBYFE4+wxCAQ0eRBIgAkCAYUD8qZKvR2Deh/y9PxBMRgIM98HYVBBQDAbHuAFnqRBdl/p1Nt+bEsaRIA4dmpJwvRBHB/wJA3SeclehSAgHgjb+LDnhvV65AWBJzUg4wwHgJkMiGiU/WEcatTPGkHqQWCQfd3wZVBirVoQGQgunz3qQIJAcIm9Iz4zykC6c8vBILgEmMPswkBdGcjBbYO61nIwCC7Wa/9cZj+bvTVlIP9aMQhCFuRzRqOtq+4VkPa0TtvTbr7DjiGeo9bOuKcReveuDZ5WkFKQtaki5VJmP1+6ZJCedvPyRdMWz1HDGp6jF3vwXFToIA2zcOwidmmKGbvDPux3NVrNGPZAHEO1KwZpzDjP5y+btniOGtbwHL3YA8fYE3uLF7ExOzSQ7nsGYxVo/eFvtebczb9s5OndgvtNuV3XaeuJm39c0W3xHLV2Xevn6MUePMfefA5mYjav/TVIVPR/gvCboWtZgz690CKl1Zxhg/i6GYrALWA0RFIps+LY9BfR/IcB87RjL4444pCKROIXinxKROhJMmAAAAAASUVORK5CYII=">
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>У вас слабая совместимость по темпераменту.</p>
-                    </blockquote>
+                    <p>
+                        You have a weak temperament compatibility.<br />
+                        <a href="#compatbilityReadMore" data-toggle="modal" data target="#compatbilityReadMore">Read more...</a>
+                    </p>
                 </div>
             }
             else
@@ -88,9 +92,10 @@
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANrSURBVGhD7ZrLaxNRFMaz9i2+/iELwZnmzjQJLVRcuBCsXSiIutUarRt1IW5ciLSIjWSmhlIpiC8wRhPUpQVduLFFENuCrmzHcyZnUCbnZl53Ji7ywQ9KMvfc75t7586dSXMDDTRQdjJr5kHNMsu6ZVSAh8AL3TbaiGaL5/RZRZsvlPBYavZ/SNhij2YZk2CwBWyBaScUeKxlNLEt1qBy2Qs7ByPTYGSDNRoFy1gHKpkHgqlxTLfFN9ZUAuCkrGo1c5y6SU+F+cJOCDDLmVCLmC1XyzuoW7UafjR8CM7YO77jVGhjn9S9GuXnSgfgLC0znaWMWMa+yUYy0XT6wHeUAbAaKplmsP7fZzvIFDFDduKpszpxhbMn9mqmLWh74UwoX2LjgktzrPsM3uy4gmly+tVx50LrBPtdB3GF7IUTbTuS37EjgCGav687ra0bPcKItUijAiEm+ULp4IVoOzddAsJMkM1gwcFv+CLq8YfwuPXpLHs8rKKvyWZv4fYaro/wu9gEyELc/nzOGbZNtg0E2dTr+n6yK5f7PMEUUE2cEH8RRbIrF64MfGN1JAvhjsplsisXBKlyjVWRNAQCi9EDsisXXB8vucYco4tl5+jSGPsdh4oQCD42k125IMh7rrEfDPF4o+I8+TkdKoyqEAg+TpBdufAgrvG/eCE8M0FhVIZAQgUJM7XufDnfZUoW5kxDbQgk3NQKcbGXFoqO/f1ilzl/mDRCIGEv9grX2E9QmLRCIDAiU2RXrig3xE6YS11mn/66llqIDiFuiO7zeYQtiiyMH1UhcItiWMY+sttbEKTJFZERFEbdSLhBGmQzWHrNPMUV6YUsjMoQCFzoJ8lmsOh16DpXqBf+MCmE+BH5cReG8CpXLAgvjOoQCHgK3iz6RY+7q1zBIEbqReUhYKVayS/md5G9aMJXMHzRfiBGyVY8QYEZvnCGWMY9shNf+LoS5uZbtoMswFtBXd9GdpKpXy+x4Rr9qOwltid8xQ/F8fdAtlPV4CxQHsITTjMYmdR/6IGRuDu0NLSduk1PndVMrHAmkiG+Qu0x6iYb0d0ff4aOvAPoRqzBVJo6XC3vpvLZyw0EezMw0gA2eaPd4LHYBkJM9DUAJ3wDeMQyRvDsAnMwWs/AtPsPA/g3fobf4TGht+IDDTSQAuVyfwDdSxtBGQ/GPQAAAABJRU5ErkJggg==">
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>У вас отличная совместимость по темпераменту, по темпераменту, это близкий вам человек.</p>
-                    </blockquote>
+                    <p>
+                        You have excellent compatibility in temperament, temperament, this is a close person to you.<br />
+                        <a href="#compatbilityReadMore" data-toggle="modal" data target="#compatbilityReadMore">Read more...</a>
+                    </p>
                 </div>
             }
 
@@ -104,9 +109,10 @@
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7Zpfb9JQGMbxK6nfwms/hYBOHf678ELvdIsJqLTQliUDNqZmcdkmmmwCJiZeuItplkjYNF5vjsSR6M3reWoPPSt/7Kn10My+yRP68p73vM8PSgbtEnHEEYd8UIJOzV4onp1JWuejJHhyLP45AMGaFpkoippNlqqO1fHhvBO0rpWp06pFSmvME7zdT5fOOHZHx72kdQ6L997W6MfXZ5ESPMEbPDp2R8eJBvneeUqNcpXqxbJSNSsVe3ZoIICYSVmUS5tKhZmACQ1k5dE8ZdMW7V/XlAozMTsGiUFCljqQmzod5hZp/4bneRmx3m5+iQ5uFQZqykAA8fPbLh29bgWDYT1HG017D8B46+reEcGINIyPXnUgEAxtNuRgfEBAakEgGRifEJB6EEiE2WwONyhCjFojaDIg0DijkhDQ5ECgYYYDQECTBYFE4+wxCAQ0eRBIgAkCAYUD8qZKvR2Deh/y9PxBMRgIM98HYVBBQDAbHuAFnqRBdl/p1Nt+bEsaRIA4dmpJwvRBHB/wJA3SeclehSAgHgjb+LDnhvV65AWBJzUg4wwHgJkMiGiU/WEcatTPGkHqQWCQfd3wZVBirVoQGQgunz3qQIJAcIm9Iz4zykC6c8vBILgEmMPswkBdGcjBbYO61nIwCC7Wa/9cZj+bvTVlIP9aMQhCFuRzRqOtq+4VkPa0TtvTbr7DjiGeo9bOuKcReveuDZ5WkFKQtaki5VJmP1+6ZJCedvPyRdMWz1HDGp6jF3vwXFToIA2zcOwidmmKGbvDPux3NVrNGPZAHEO1KwZpzDjP5y+btniOGtbwHL3YA8fYE3uLF7ExOzSQ7nsGYxVo/eFvtebczb9s5OndgvtNuV3XaeuJm39c0W3xHLV2Xevn6MUePMfefA5mYjav/TVIVPR/gvCboWtZgz690CKl1Zxhg/i6GYrALWA0RFIps+LY9BfR/IcB87RjL4444pCKROIXinxKROhJMmAAAAAASUVORK5CYII=">
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>У вас слабая совместимость по семейности, немного разное отношение к семейным ценностям.</p>
-                    </blockquote>
+                    <p>
+                        You have a weak compatibility on the family, a little different attitude to family values.<br />
+                        <a href="#compatbilityReadMore" data-toggle="modal" data target="#compatbilityReadMore">Read more...</a>
+                    </p>
                 </div>
             }
             else
@@ -117,9 +123,10 @@
 
                 </div>
                 <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                        <p>У вас отличная совместимость семейных ценностей, похоже ваши семейные ценности близки.</p>
-                    </blockquote>
+                    <p>
+                        You have a great compatibility of family values, it seems your family values are close.<br />
+                        <a href="#compatbilityReadMore" data-toggle="modal" data target="#compatbilityReadMore">Read more...</a>
+                    </p>
                 </div>
             }
 

@@ -1,13 +1,16 @@
 ﻿@using System.Globalization
 @using MatchUp.Models
 @using MatchUp.Services
-@using MatchUp.Shared
+@using Microsoft.AspNet.Identity
+@using Constants = MatchUp.Shared.Constants
 @model UserViewModel
 @{
     ViewBag.Title = "User";
     Layout = "../Shared/_Layout.cshtml";
 }
 
+@Html.Partial("MoreCelebritiesModal")
+@Html.Partial("ReadMoreModal")
 <div class="container">
     <div class="row sticky-card pt-2 pb-1 shadow bg-white rounded">
         <div class="col-4 col-md-2 text-center">
@@ -23,18 +26,6 @@
             }
         </div>
     </div>
-
-    @if (Request.QueryString.Count != 0)
-    {
-        <div class="row">
-            <div class="col">
-                @*@Html.ActionLink()*@
-            </div>
-            <div class="col">
-
-            </div>
-        </div>
-    }
 
     <div class="mt-2 pt-2 mb-2">
         <h2 class="text-center">PSYCHOMATRIX</h2>
@@ -100,6 +91,34 @@
         </table>
     </div>
 
+    @if (Model.Id != User.Identity.GetUserId())
+    {
+        <div class="row mb-4 mt-3">
+            <div class="col-6 pr-1">
+                @if (Request.QueryString["isFamouse"] != null)
+                {
+                    @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = Model.Id, isFamouse = true }, new { @class = "btn btn-primary btn-shadow btn-gradient col" })
+                }
+                else
+                {
+                    @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = Model.Id }, new { @class = "btn btn-primary btn-shadow btn-gradient col" })
+                }
+            </div>
+            <div class="col-6 pl-0">
+                @if (Request.QueryString["isFamouse"] != null)
+                {
+                    @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = Model.Id, isFamouse = true }, new { @class = "btn btn-primary btn-shadow btn-gradient col" })
+                }
+                else
+                {
+                    @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = Model.Id }, new { @class = "btn btn-primary btn-shadow btn-gradient col" })
+                }
+            </div>
+        </div>
+
+    }
+
+    @*@if (Request.QueryString["isFamouse"] != "true" || Model.SameStars[0] != null)*@
     @if (Request.QueryString["isFamouse"] != "true")
     {
         <h2>Similar people</h2>
@@ -110,7 +129,7 @@
                 <div class="col">
                     <a href="~/home/userpage/@famouse.Id?isFamouse=true">
                         <img src="@famouse.PhotoUrl" class="round">
-                        <h6 class="mt-1">@famouse.Name</h6>
+                        <h6 class="mt-1 text-primary">@famouse.Name</h6>
                         <p class="text-black-50">@famouse.Details</p>
                     </a>
                 </div>
@@ -118,7 +137,7 @@
         </div>
         <div class="row">
             <div class="col text-right">
-                <a class="" href="#buyModal" data-toggle="modal" data target="#buyModal">More celebties...</a>
+                <a class="" href="#moreCelebritiesModal" data-toggle="modal" data target="#moreCelebritiesModal">More celebties...</a>
             </div>
         </div>
     }
@@ -143,7 +162,7 @@
                     <div class="card-text">
                         @Model.Descriptions[pair.Key].Details
                         <br />
-                        <a href="#buyModal" data-toggle="modal" data target="#buyModal">Read more...</a>
+                        <a href="#readMoreModal" data-toggle="modal" data target="#readMoreModal">Read more...</a>
                     </div>
                 </div>
             </div>
@@ -159,7 +178,7 @@
                             <div class="col">
                                 <a href="~/home/userpage/@famouse.Id?isFamouse=true">
                                     <img src="@famouse.PhotoUrl" class="round">
-                                    <h6 class="mt-1">@famouse.Name</h6>
+                                    <h6 class="mt-1 text-primary">@famouse.Name</h6>
                                     <p class="text-black-50">@famouse.Details</p>
                                 </a>
                             </div>
@@ -167,15 +186,11 @@
                     </div>
                     <div class="row">
                         <div class="col text-right">
-                            <a href="#buyModal" data-toggle="modal" data target="#buyModal">More celebties...</a>
+                            <a href="#moreCelebritiesModal" data-toggle="modal" data target="#moreCelebritiesModal">More celebties...</a>
                         </div>
                     </div>
                 </div>
             }
-        }
-        else
-        {
-
         }
     }
 
@@ -200,7 +215,7 @@
                     <div class="card-text">
                         @Model.Descriptions[pair.Key].Details
                         <br />
-                        <a href="#buyModal" data-toggle="modal" data target="#buyModal">Read more...</a>
+                        <a href="#readMoreModal" data-toggle="modal" data target="#readMoreModal">Read more...</a>
                     </div>
                 </div>
             </div>
@@ -216,7 +231,7 @@
                             <div class="col">
                                 <a href="~/home/userpage/@famouse.Id?isFamouse=true">
                                     <img src="@famouse.PhotoUrl" class="round">
-                                    <h6 class="mt-1">@famouse.Name</h6>
+                                    <h6 class="mt-1 text-primary">@famouse.Name</h6>
                                     <p class="text-black-50">@famouse.Details</p>
                                 </a>
                             </div>
@@ -224,7 +239,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-right">
-                            <a class="" href="#buyModal" data-toggle="modal" data target="#buyModal">More celebties...</a>
+                            <a class="" href="#moreCelebritiesModal" data-toggle="modal" data target="#moreCelebritiesModal">More celebties...</a>
                         </div>
                     </div>
                 </div>
@@ -232,26 +247,7 @@
         }
     }
 
-    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Try premium</h4>
-                    <button class="close" type="button" data-dismiss="modal">×</button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li>Search among 100,000 celebrities!</li>
-                        <li>Detailed description of your Psychmatrix</li>
-                        <li>And much more</li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <a href="/Payment/Payment" class="btn btn-primary btn-shadow btn-gradient">Buy for 0.99$</a>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
     @*<div class="mt-5 pt-2">
             <h2>Дополнительная информация</h2>

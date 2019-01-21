@@ -10,8 +10,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="robots" content="all,follow">
-
     <title>@ViewBag.Title - Personal birthday analysis</title>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KHNBSHN');</script>
+    <!-- End Google Tag Manager -->
+
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="~/Content/bootstrap.css">
     <link rel="stylesheet" href="~/Content/Site.css">
@@ -32,6 +43,12 @@
     <link rel="stylesheet" href="~/Content/css/custom.css">
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHNBSHN"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- navbar-->
     <header class="header">
         <nav class="navbar navbar-expand-lg fixed-top">
@@ -42,7 +59,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("My Psychomatrix", "UserPage", "Home", new { id = 0 }, new { @class = "nav-link" })
+                            <a href="/" class="nav-link">My Psychomatrix</a>
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("My people list", "AddPerson", "Person", null, new { @class = "nav-link" })
@@ -58,7 +75,7 @@
                     {
                         <li class="nav-item">
                             <!-- Button trigger modal-->
-                            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
+                            <a href="#" data-toggle="modal" data-target="#signinModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
                         </li>
                         <li class="nav-item">
                             <!-- Button trigger modal-->
@@ -77,44 +94,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6">
-                    <a href="#" class="brand">Landy</a>
+                    <a href="/" class="brand text-primary">MatchUp</a>
                     <ul class="contact-info list-unstyled">
                         <li><a href="mailto:matchup.webapp@gmail.com">matchup.webapp@gmail.com</a></li>
-                        <li><a href="tel:123456789">+00 123 456 789</a></li>
-                    </ul>
-                    <ul class="social-icons list-inline">
-                        <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5>Selected Cases</h5>
-                    <ul class="links list-unstyled">
-                        <li> <a href="#">Guess Conntect</a></li>
-                        <li> <a href="#">Postly</a></li>
-                        <li> <a href="#">Iris Vor Arnim</a></li>
-                        <li> <a href="#">Yapital</a></li>
-                    </ul>
+                    <a href="/Person/AddPerson">
+                        <h5 class="text-primary">Add people</h5>
+                    </a>
+                    <p>Add new people to see their Psychomatrix (family, friends, colleagues)</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5>Selected Cases</h5>
-                    <ul class="links list-unstyled">
-                        <li> <a href="#">Guess Conntect</a></li>
-                        <li> <a href="#">Postly</a></li>
-                        <li> <a href="#">Iris Vor Arnim</a></li>
-                        <li> <a href="#">Yapital</a></li>
-                    </ul>
+                    <a href="/Star/Stars">
+                        <h5 class="text-primary">Search</h5>
+                    </a>
+                    <p>Search among 100,000 celebrities by name and compare yourself with them</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5>Selected Cases</h5>
-                    <ul class="links list-unstyled">
-                        <li> <a href="#">Guess Conntect</a></li>
-                        <li> <a href="#">Postly</a></li>
-                        <li> <a href="#">Iris Vor Arnim</a></li>
-                        <li> <a href="#">Yapital</a></li>
-                    </ul>
+                    <a href="#">
+                        <h5 class="text-primary">About</h5>
+                    </a>
+                    <p>Find out more about Psychomatrix and leave your feedback</p>
                 </div>
             </div>
         </div>
@@ -124,37 +125,10 @@
                     <div class="col-md-7">
                         <p>&copy; 2019 Match-up.me</p>
                     </div>
-                    <div class="col-md-5 text-right">
-                        <p>Template By <a href="https://bootstrapious.com/" class="external">Bootstrapious</a>  </p>
-                        <!-- Please do not remove the backlink to Bootstrapious unless you support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :) -->
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
-
-
-
-    @*<footer class="footer modal-footer pt-4">
-            <div class="container text-center text-md-left">
-                <div class="row">
-                    <div class="col-md-6 mt-md-0 mt-3">
-                        <a href="/Person/AddPerson" class="text-uppercase font-weight-bold">Add people</a>
-                        <p>Add new people to see their Psychomatrix (family, friends, colleagues)</p>
-                    </div>
-                    <hr class="clearfix w-100 d-md-none pb-3">
-                    <div class="col-md-6 mb-md-0 mb-3">
-                        <a href="/Star/Stars" class="text-uppercase font-weight-bold">Search</a>
-                        <p>Search among 100,000 celebrities by name and compare yourself with them</p>
-                    </div>
-                    <hr class="clearfix w-100 d-md-none pb-3">
-                    <div class="col-md-6 mb-md-0 mb-3">
-                        <a href="#" class="text-uppercase font-weight-bold">About</a>
-                        <p>Find out more about Psychomatrix and leave your feedback</p>
-                    </div>
-                </div>
-            </div>
-        </footer>*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", false)

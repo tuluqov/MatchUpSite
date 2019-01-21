@@ -404,9 +404,12 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Shared\_AccountLayout.cshtml" />
     <Content Include="Views\Payment\Payment.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Shared\MoreCelebritiesModal.cshtml" />
+    <Content Include="Views\Shared\ReadMoreModal.cshtml" />
+    <Content Include="Views\Shared\CompatbilityReadMore.cshtml" />
+    <Content Include="Views\Shared\ConfirmDeleteModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,6 +417,7 @@
     <Folder Include="Content\vendor\font-awesome\scss\" />
     <Folder Include="Content\vendor\jquery.cookie\test\" />
     <Folder Include="Views\Manage\" />
+    <Folder Include="Views\Modal\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
