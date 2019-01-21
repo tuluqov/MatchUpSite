@@ -8,53 +8,58 @@
 }
 
 <div class="container">
-    <div class="row sticky-card shadow bg-white rounded">
+    <div class="row">
         <div class="col text-center">
             <a href="~/home/userpage/@Model.User1.Id">
-                <img src="@Model.User1.PhotoUrl" class="round-small mb-2 mt-2">
-                <h6 class="font-weight-light">@Model.User1.Name</h6>
-                <h6 class="font-weight-light">@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                <img src="@Model.User1.PhotoUrl" class="round mb-2 mt-2">
+                <h6 class="font-weight-light text-primary">@Model.User1.Name</h6>
+                <h6 class="font-weight-light text-primary">@Model.User1.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
             </a>
         </div>
         <div class="col text-center">
             @if (Request.QueryString["isFamouse"] == "True")
             {
                 <a href="~/home/userpage/@Model.User2.Id?isFamouse=true">
-                    <img src="@Model.User2.PhotoUrl" class="round-small mb-2 mt-2">
-                    <h6 class="font-weight-light">@Model.User2.Name</h6>
-                    <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                    <img src="@Model.User2.PhotoUrl" class="round mb-2 mt-2">
+                    <h6 class="font-weight-light text-primary">@Model.User2.Name</h6>
+                    <h6 class="font-weight-light text-primary">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             }
             else
             {
                 <a href="~/home/userpage/@Model.User2.Id">
-                    <img src="~/Content/img/ava.png" class="round-small mb-2 mt-2">
-                    <h6 class="font-weight-light">@Model.User2.Name</h6>
-                    <h6 class="font-weight-light">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
+                    <img src="~/Content/img/ava.png" class="round mb-2 mt-2">
+                    <h6 class="font-weight-light text-primary">@Model.User2.Name</h6>
+                    <h6 class="font-weight-light text-primary">@Model.User2.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</h6>
                 </a>
             }
 
         </div>
     </div>
-    @foreach (KeyValuePair<int, int> pair in Model.User1.SquarePersent)
-    {
-        <div class="border-bottom mt-4 mb-2">
-            <div class="row">
-                <div class="col text-center">
-                    <h4>@Constants.NamesEn[pair.Key]</h4>
-                </div>
-            </div>
 
-            <div class="row mb-2">
-                <div class="col">
-                    <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+    <div class="card border-light mt-2 shadow bg-white rounded p-2 m-auto col-md-8 col pb-4">
+        @foreach (KeyValuePair<int, int> pair in Model.User1.SquarePersent)
+        {
+            <div class="mt-4 mb-2">
+                <div class="row">
+                    <div class="col ml-2 text-center">
+                        <h4>@Constants.NamesEn[pair.Key]</h4>
+                    </div>
                 </div>
-                <div class="col">
-                    <div class="star-ratings-sprite mt-1"><span style="width: @Model.User2.SquarePersent[pair.Key]%" class="star-ratings-sprite-rating"></span></div>
+
+                <div class="row mb-2">
+                    <div class="col">
+                        <div class="star-ratings-sprite mt-1"><span style="width: @pair.Value%" class="star-ratings-sprite-rating"></span></div>
+                    </div>
+                    <div class="col">
+                        <div class="star-ratings-sprite mt-1"><span style="width: @Model.User2.SquarePersent[pair.Key]%" class="star-ratings-sprite-rating"></span></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+
+    
     <div class="row">
         <div class="col text-center">
             <div class="btn btn-primary btn-shadow btn-gradient btn-lg mt-4 col-5">Share</div>

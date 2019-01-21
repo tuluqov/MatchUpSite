@@ -3,7 +3,6 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<!-- Modal-->
 @RenderPage("../Account/Login.cshtml")
 @RenderPage("../Account/Register.cshtml")
 <section id="hero" class="hero hero-home bg-gray">
@@ -11,10 +10,10 @@
         <div class="row d-flex">
             <div class="col-lg-6 text order-2 order-lg-1">
                 <h1 id="main-text"></h1>
-                <p class="hero-text">Registration here use your date of birth for analisis</p>
+                <p class="hero-text">Registration here use your date of birth to calculate the Pythagorean Square</p>
                 <div class="CTA">
-                    <a href="#" class="btn btn-primary btn-shadow btn-gradient" data-toggle="modal" data-target="#signupModal">Sign Up free</a>
-                    <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#signinModal">Sign in</a>
+                    <a href="#" class="btn btn-primary btn-shadow btn-gradient col-md-4 col-7" data-toggle="modal" data-target="#signupModal">Sign Up free</a>
+                    <a href="#" class="btn btn-outline-primary col-md-2 col-3" data-toggle="modal" data-target="#signinModal">Sign in</a>
                 </div>
             </div>
         </div>
@@ -22,6 +21,11 @@
 </section>
 <section id="browser" class="browser">
     <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="h3 mb-2">How it works</h2>
+            </div>
+        </div>
         <div id="myTab" role="tablist" class="nav nav-tabs">
             <div class="row">
                 <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">1</span>You enter your date of birth</a></div>
@@ -43,7 +47,7 @@
                     <div class="avatar"><img src="~/Content/img/avatar-3.jpg" alt="..." class="img-fluid"></div>
                     <div class="text">
                         <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Jessica Watson</strong>
+                        <p>Pythagoras square has changed my life. I was skeptical at first, but when I tried, I was very surprised. This is an incredible tool for understanding yourself and your loved ones.</p><strong class="name">Jessica Watson</strong>
                     </div>
                 </div>
             </div>
@@ -52,45 +56,13 @@
                     <div class="avatar"><img src="~/Content/img/avatar-5.jpg" alt="..." class="img-fluid"></div>
                     <div class="text">
                         <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Sarrah Wood</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="item-holder">
-                <div class="item">
-                    <div class="avatar"><img src="~/Content/img/avatar-3.jpg" alt="..." class="img-fluid"></div>
-                    <div class="text">
-                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Jessica Watson</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="item-holder">
-                <div class="item">
-                    <div class="avatar"><img src="~/Content/img/avatar-5.jpg" alt="..." class="img-fluid"></div>
-                    <div class="text">
-                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p><strong class="name">Sarrah Wood</strong>
+                        <p>This is a great tool to check your friends and first of all yourself. I changed my attitude towards life and my environment after using Pythagorean Square.</p><strong class="name">Sarrah Wood</strong>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-@*<section id="newsletter" class="newsletter bg-gray">
-    <div class="container text-center">
-        <h2>Subscribe to Newsletter</h2>
-        <p class="lead">By subscribing to the newsletter you will receive unique recommendations for understanding yourself</p>
-        <div class="form-holder">
-            <form id="newsletterForm" action="#">
-                <div class="form-group">
-                    <input type="email" name="email" id="email" placeholder="Enter Your Email Address">
-                    <button type="submit" class="btn btn-primary btn-gradient submit">Subscribe</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</section>*@
 
 @section scripts
 {

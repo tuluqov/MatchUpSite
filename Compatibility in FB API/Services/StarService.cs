@@ -88,7 +88,7 @@ namespace MatchUp.Services
                             x.Matrix.LogicIntuition == userMatrix.LogicIntuition &&
                             x.Matrix.Luck == userMatrix.Luck &&
                             x.Matrix.VitalEnergy == userMatrix.VitalEnergy &&
-                            x.Matrix.Id != userMatrix.Id)
+                            x.Matrix.Id != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Take(peopleNumbers)
                 .ToList();
@@ -103,63 +103,63 @@ namespace MatchUp.Services
             var mostSame = GetForUser(idUserMatrix, 2);
 
             var sameCharacter = context.Stars
-                .Where(x => x.Matrix.CharacterWill == userMatrix.CharacterWill)
+                .Where(x => x.Matrix.CharacterWill == userMatrix.CharacterWill && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameEnergy = context.Stars
-                .Where(x => x.Matrix.VitalEnergy == userMatrix.VitalEnergy)
+                .Where(x => x.Matrix.VitalEnergy == userMatrix.VitalEnergy && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameCognitive = context.Stars
-                .Where(x => x.Matrix.CognitiveCreative == userMatrix.CognitiveCreative)
+                .Where(x => x.Matrix.CognitiveCreative == userMatrix.CognitiveCreative && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameHealth = context.Stars
-                .Where(x => x.Matrix.HealthBeauty == userMatrix.HealthBeauty)
+                .Where(x => x.Matrix.HealthBeauty == userMatrix.HealthBeauty && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameLogic = context.Stars
-                .Where(x => x.Matrix.LogicIntuition == userMatrix.LogicIntuition)
+                .Where(x => x.Matrix.LogicIntuition == userMatrix.LogicIntuition && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameLabor = context.Stars
-                .Where(x => x.Matrix.LaborSkill == userMatrix.LaborSkill)
+                .Where(x => x.Matrix.LaborSkill == userMatrix.LaborSkill && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameLuck = context.Stars
-                .Where(x => x.Matrix.Luck == userMatrix.Luck)
+                .Where(x => x.Matrix.Luck == userMatrix.Luck && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameDuty = context.Stars
-                .Where(x => x.Matrix.Duty == userMatrix.Duty)
+                .Where(x => x.Matrix.Duty == userMatrix.Duty && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
                 .ToList();
 
             var sameIntellect = context.Stars
-                .Where(x => x.Matrix.IntellectMemory == userMatrix.IntellectMemory)
+                .Where(x => x.Matrix.IntellectMemory == userMatrix.IntellectMemory && x.MatrixId.Value != idUserMatrix)
                 .OrderBy(x => x.Id)
                 .Skip(2)
                 .Take(2)
