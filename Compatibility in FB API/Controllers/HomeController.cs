@@ -68,13 +68,16 @@ namespace MatchUp.Controllers
                     return View(personModel);
                 }
 
-                var personFamouse = Mapper.ToUser(starService.GetById(id));
+                var star = starService.GetById(id);
+
+                var personFamouse = Mapper.ToUser(star);
 
                 if (personFamouse == null)
                 {
                     return HttpNotFound();
                 }
 
+                personFamouse.SameStars = Mapper.ToSameUsers(starService.GetSimilarStars(star.MatrixId.Value));
                 personFamouse.SquarePersent = calculator.GetPercent(personFamouse.PythagorianMatrix);
                 personFamouse.Descriptions = descriptionService.GetDescriptions(personFamouse.PythagorianMatrix);
 

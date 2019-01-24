@@ -6,19 +6,19 @@
     ViewBag.Title = "AddPerson";
     Layout = "../Shared/_Layout.cshtml";
 }
-
-<div class="container">
+@Html.Partial("ConfirmDeleteModal")
+<div class="container mt-3">
     <div class="row mb-2">
         <div class="col-9">
             <h4>Your people list</h4>
         </div>
         <div class="col-3 text-center">
-            <a class="btn btn-primary" href="#phone_form" data-toggle="modal" data target="#phone_form">+</a>
+            <a class="btn btn-primary btn-shadow btn-gradient" href="#phone_form" data-toggle="modal" data target="#phone_form">+</a>
         </div>
     </div>
 
     <div class="form-group">
-        <div id="phone_form" class="modal fade in" style="padding-top: 30%">
+        <div id="phone_form" class="modal fade in">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -26,17 +26,17 @@
                         <button class="close" type="button" data-dismiss="modal">×</button>
                     </div>
                     <div class="modal-body">
-                        @using (Html.BeginForm("AddPerson", "Person", FormMethod.Post, new { @class = "", id = "personAddForm" }))
+                        @using (Html.BeginForm("AddPerson", "Person", FormMethod.Post, new { @class = "", id = "signupform" }))
                         {
                             <div class="form-group">
                                 <label for="Name">Enter name</label>
-                                <input type="text" required name="Name" id="Name" class="form-control" />
+                                <input type="text" required name="Name" id="Name" class="form-control" placeholder="Name" />
                             </div>
                             <div class="form-group">
                                 <label for="Name">Enter date of birth:</label>
-                                <input class="form-control" type="date" name="Birthday" id="Birthday" />
+                                <input class="form-control" type="date" name="Birthday" id="Birthday" placeholder="Birthday" />
                             </div>
-                            <button type="submit" class="btn btn-primary col">Add</button>
+                            <button type="submit" class="btn btn-primary btn-shadow btn-gradient col">Add</button>
                         }
                     </div>
                 </div>
@@ -73,37 +73,18 @@
                                     </div>
                                     <div class="col-8 text-center pt-2">
                                         <div class="card-title">
-                                            <h5>@person.Name</h5>
+                                            <h5 class=" text-primary">@person.Name</h5>
                                         </div>
-                                        <p>@person.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
+                                        <p class="text-black-50">@person.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
                                     </div>
                                 </div>
                             </a>
-                            @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary col-6" })
-                            @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary col-5" })
+                            @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary btn-shadow btn-gradient col-6" })
+                            @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = person.Id }, new { id = person.Id, @class = "btn btn-primary btn-shadow btn-gradient col-5" })
                         </div>
                     </div>
                 </div>
             }
         </div>
     </div>
-
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title font-weight-light text-center" id="exampleModalLabel">Are you sure you want to delete it?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-danger">Delete</a>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   
 </div>

@@ -8,7 +8,7 @@
 }
 
 <div class="container">
-    <div class="row mb-3">
+    <div class="row mb-3 mt-3">
         <div class="col-4 col-md-4">
             <img src="@Model.Person.PhotoUrl" class="round">
         </div>
@@ -43,20 +43,21 @@
                                                 </div>
                                                 <div class="col-8 text-center pt-2">
                                                     <div class="card-title">
-                                                        <h5>@user.Name</h5>
+                                                        <h5 class="text-primary">@user.Name</h5>
+                                                        <p class="text-black-50">@user.Details</p>
                                                     </div>
-                                                    <p>@user.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
+                                                    <p class="text-black-50">@user.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
                                                 </div>
                                             </div>
                                         </a>
                                         <div>
                                             <h6 class="text-left">Similarity @user.SimilarPercent%</h6>
-                                            <div class="progress mb-2" style="height: 20px;">
+                                            <div class="progress mb-2">
                                                 <div class="progress-bar" role="progressbar" style="width: @user.SimilarPercent%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
-                                        @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-6" })
-                                        @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-5" })
+                                        @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary btn-shadow btn-gradient col-6" })
+                                        @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary btn-shadow btn-gradient col-5" })
 
                                     </div>
                                 </div>
@@ -80,14 +81,15 @@
                                                 </div>
                                                 <div class="col-8 text-center pt-2">
                                                     <div class="card-title">
-                                                        <h5>@user.Name</h5>
+                                                        <h5 class="text-primary">@user.Name</h5>
+                                                        <p class="text-black-50">@user.Details</p>
                                                     </div>
-                                                    <p>@user.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
+                                                    <p class="text-black-50">@user.Birthday.ToString("MMMM d, yyyy", CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"))</p>
                                                 </div>
                                             </div>
                                         </a>
-                                        @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-6" })
-                                        @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary col-5" })
+                                        @Html.ActionLink("Compatibility ❤️", "CompatibilityInPerson", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary btn-shadow btn-gradient col-6" })
+                                        @Html.ActionLink("Compare ⚖️", "Comapare", "Home", new { id = user.Id, isFamouse = true }, new { id = user.Id, @class = "btn btn-primary btn-shadow btn-gradient col-5" })
 
                                     </div>
                                 </div>
@@ -106,7 +108,7 @@
                                     <div class="form-group">
                                         <div class="form-row">
                                             <input class="col m-1 form-control" type="text" name="name" placeholder="Enter name" />
-                                            <input class="col-3 btn btn-primary" type="submit" value="Search" />
+                                            <input class="col-3 btn btn-primary btn-shadow btn-gradient" type="submit" value="Search" />
                                         </div>
                                     </div>
                                 }

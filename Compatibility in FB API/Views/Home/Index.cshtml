@@ -1,76 +1,83 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "MatchUp";
     Layout = "../Shared/_Layout.cshtml";
 }
 
-@*<div class="container content">
-    <div class="jumbotron">
-        <h3 class="display-4" style="font-size: 3rem;">Personality analysis by date of birth</h3>
-        <p class="lead"></p>
-        <div class="row">
-            <div class="col text-center">
-                @Html.ActionLink("Sign in", "Login", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col text-center">
-                @Html.ActionLink("Sign up", "Register", "Account", null, new { @class = "btn btn-primary btn-lg mt-2 col-8 col-md-4" })
+@RenderPage("../Account/Login.cshtml")
+@RenderPage("../Account/Register.cshtml")
+<section id="hero" class="hero hero-home bg-gray">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-lg-6 text order-2 order-lg-1">
+                <h1 id="main-text"></h1>
+                <p class="hero-text">Registration here use your date of birth to calculate the Pythagorean Square</p>
+                <div class="CTA">
+                    <a href="#" class="btn btn-primary btn-shadow btn-gradient col-md-4 col-7" data-toggle="modal" data-target="#signupModal">Sign Up free</a>
+                    <a href="#" class="btn btn-outline-primary col-md-2 col-3" data-toggle="modal" data-target="#signinModal">Sign in</a>
+                </div>
             </div>
         </div>
     </div>
-</div>*@
-<div class="overlay">
-    <form class="main-form">
-        <div class="con p-3">
-            <header class="head-form">
-                <h2 id="str1">Personality analysis by date of birth</h2>
-            </header>
-            <br>
-            <div class="field-set">
-                <header class="head-form">
-                    <h2>Sign Up</h2>
-                    <p>registration here use your date of birth for analisis</p>
-                </header>
-                <input class="form-input" id="txt-input" type="text" placeholder="UserName" required> <br>
-                <input class="form-input" type="password" placeholder="Password" id="pwd" name="Password" required>
-                <input class="form-input" type="date" placeholder="Birthday" name="Birthday" required>
-                <br>
-                <button class="btn submits sign-up button-form">
-                    Sign Up
-                </button>
-                <button class="log-in button-form"> Log In </button>
+</section>
+<section id="browser" class="browser">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="h3 mb-2">How it works</h2>
             </div>
         </div>
-
-    </form>
-
-        @*<form>
-            <div class="container">
-                <div class="row">
-                    <div class="col border-right">
-                        <header class="head-form">
-                            <h2>Personality analysis by date of birth</h2>
-                        </header>
-                    </div>
-                    <div class="col">
-                        <div class="field-set">
-                            <header class="head-form">
-                                <h2>Log In</h2>
-                                <p>login here using your username and password</p>
-                            </header>
-                            <input class="form-input" id="txt-input" type="text" placeholder="UserName" required> <br>
-                            <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
-                            <br>
-                            <button class="log-in button-form"> Log In </button>
-                            <button class="btn submits sign-up button-form">
-                                Sign Up
-
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                            </button>
-                        </div>
+        <div id="myTab" role="tablist" class="nav nav-tabs">
+            <div class="row">
+                <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">1</span>You enter your date of birth</a></div>
+                <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">2</span>Our site calculates your psychomatrix by the method of Pythagoras</a></div>
+                <div class="col-md-4"><a class="nav-item nav-link"> <span class="number">3</span>You will learn very interesting things about yourself :)</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="testimonials" class="testimonials bg-gray">
+    <div class="container">
+        <header class="text-center no-margin-bottom">
+            <h2>Happy Clients</h2>
+            <p class="lead">There are many variations of passages of personality analysis, but the majority have</p>
+        </header>
+        <div class="owl-carousel owl-theme testimonials-slider">
+            <div class="item-holder">
+                <div class="item">
+                    <div class="avatar"><img src="~/Content/img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                    <div class="text">
+                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
+                        <p>Pythagoras square has changed my life. I was skeptical at first, but when I tried, I was very surprised. This is an incredible tool for understanding yourself and your loved ones.</p><strong class="name">Jessica Watson</strong>
                     </div>
                 </div>
             </div>
+            <div class="item-holder">
+                <div class="item">
+                    <div class="avatar"><img src="~/Content/img/avatar-5.jpg" alt="..." class="img-fluid"></div>
+                    <div class="text">
+                        <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
+                        <p>This is a great tool to check your friends and first of all yourself. I changed my attitude towards life and my environment after using Pythagorean Square.</p><strong class="name">Sarrah Wood</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        </form>*@
-</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            window.dataLayer = window.dataLayer || [];
+            var form = document.getElementsByName('signupform');
+            if (form[0].addEventListener) {
+                form[0].addEventListener('submit',
+                    function (e) {
+                        dataLayer.push({
+                            'event': 'signupform'
+                        });
+                    });
+            }
+        })
+    </script>
+}

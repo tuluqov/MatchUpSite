@@ -76,7 +76,8 @@ namespace MatchUp.Controllers
 
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, true, shouldLockout: false);
+
             switch (result)
             {
                 case SignInStatus.Success:
@@ -122,7 +123,7 @@ namespace MatchUp.Controllers
 
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await SignInManager.SignInAsync(user, isPersistent: true, rememberBrowser: true);
 
                     // Дополнительные сведения о включении подтверждения учетной записи и сброса пароля см. на странице https://go.microsoft.com/fwlink/?LinkID=320771.
                     // Отправка сообщения электронной почты с этой ссылкой
@@ -161,7 +162,7 @@ namespace MatchUp.Controllers
             }
 
             // Выполнение входа пользователя посредством данного внешнего поставщика входа, если у пользователя уже есть имя входа
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: true);
 
             switch (result)
             {
@@ -223,7 +224,7 @@ namespace MatchUp.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await SignInManager.SignInAsync(user, isPersistent: true, rememberBrowser: true);
                         
                         return RedirectToLocal(returnUrl);
                     }
