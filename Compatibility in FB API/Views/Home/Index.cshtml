@@ -5,16 +5,21 @@
 
 @RenderPage("../Account/Login.cshtml")
 @RenderPage("../Account/Register.cshtml")
-<section id="hero" class="hero hero-home bg-gray">
+<section id="hero" class="hero hero-home">
     <div class="container">
         <div class="row d-flex">
             <div class="col-lg-6 text order-2 order-lg-1">
                 <h1 id="main-text"></h1>
-                <p class="hero-text">Registration here use your date of birth to calculate the Pythagorean Square</p>
+                <p class="hero-text">
+                    Registration here use your date of birth to calculate the Pythagorean Square. This is a numerological tool for analyzing your personality.
+                </p>
                 <div class="CTA">
                     <a href="#" class="btn btn-primary btn-shadow btn-gradient col-md-4 col-7" data-toggle="modal" data-target="#signupModal">Sign Up free</a>
                     <a href="#" class="btn btn-outline-primary col-md-2 col-3" data-toggle="modal" data-target="#signinModal">Sign in</a>
                 </div>
+            </div>
+            <div class="col-lg-6 order-2 order-lg-2">
+                <img src="~/Content/img/kub.png" alt="..." class="img-fluid">
             </div>
         </div>
     </div>
@@ -23,7 +28,7 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8 text-center">
-                <h2 class="h3 mb-2">How it works</h2>
+                <h2 class="h3 mb-2">How it works?</h2>
             </div>
         </div>
         <div id="myTab" role="tablist" class="nav nav-tabs">
@@ -35,7 +40,25 @@
         </div>
     </div>
 </section>
-<section id="testimonials" class="testimonials bg-gray">
+<section id="features" class="features bg-gray">
+    <div class="container">
+        <div class="row d-flex align-items-center">
+            <div class="text col-lg-6 order-2 order-lg-1">
+                <h1 class="h3 mb-2">Why it works?</h1>
+                <p class="hero-text">
+                    Pythagorean square or "Psychomatrix" gives a chcracteristic according to the date of birth. It was developed by Pythagoras in the 5th century BC and was developed by his followers. The basic idea of psychomatrix is that the date of birth has a certain combination of numbers, with the help of which the human psychological type can be described. Each number from 1 to 9 symbolizes a certain quality and depending on the frequency of repetitions strengthens them.
+                </p>
+                <a href="/Home/WhyItWorks" class="btn btn-primary btn-shadow btn-gradient col-md-4 col-5">View More</a>
+            </div>
+            <div class="image col-lg-6 order-2 order-lg-2 text-center mb-2">
+                <img src="~/Content/img/pifagor.jpg" alt="..." class="img-fluid">
+            </div>
+        </div>
+        
+
+    </div>
+</section>
+<section id="testimonials" class="testimonials">
     <div class="container">
         <header class="text-center no-margin-bottom">
             <h2>Happy Clients</h2>
@@ -47,7 +70,16 @@
                     <div class="avatar"><img src="~/Content/img/avatar-3.jpg" alt="..." class="img-fluid"></div>
                     <div class="text">
                         <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
-                        <p>Pythagoras square has changed my life. I was skeptical at first, but when I tried, I was very surprised. This is an incredible tool for understanding yourself and your loved ones.</p><strong class="name">Jessica Watson</strong>
+                        <p>Pythagoras square has changed my life. I was skeptical at first, but when I tried, I was very surprised. This is an incredible tool for understanding yourself and your loved ones.</p>
+                        <strong class="name">Jessica Watson</strong>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 pt-2">
+                            <img class="img-stars" src="~/Content/img/stars1.png" alt="Alternate Text" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <img class="img-logo" src="~/Content/img/yelp.png" alt="Alternate Text" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,6 +89,14 @@
                     <div class="text">
                         <div class="quote"><img src="~/Content/img/quote.svg" alt="..." class="img-fluid"></div>
                         <p>This is a great tool to check your friends and first of all yourself. I changed my attitude towards life and my environment after using Pythagorean Square.</p><strong class="name">Sarrah Wood</strong>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 pt-2 text-left">
+                            <img class="img-stars" src="~/Content/img/stars1.png" alt="Alternate Text" />
+                        </div>
+                        <div class="col-12 col-md-6 text-right">
+                            <img class="img-logo" src="~/Content/img/yelp.png" alt="Alternate Text" />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -28,8 +28,19 @@ namespace MatchUp.Controllers
                 return RedirectToAction("UserPage");
             }
 
-            return View();
+            return View("Index2");
         }
+
+        public ActionResult Index2()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("UserPage");
+            }
+
+            return View("Index");
+        }
+
 
         [Authorize]
         [HttpGet]
@@ -207,6 +218,12 @@ namespace MatchUp.Controllers
             }
 
             return View(result);
+        }
+
+        [HttpGet]
+        public ActionResult WhyItWorks()
+        {
+            return View();
         }
     }
 }

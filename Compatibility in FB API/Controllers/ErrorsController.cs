@@ -9,7 +9,7 @@ namespace MatchUp.Controllers
     public class ErrorsController : Controller
     {
         [HttpGet]
-        public ActionResult Error404()
+        public ActionResult Error404(string url = "")
         {
             Response.StatusCode = 404;
 
@@ -17,7 +17,7 @@ namespace MatchUp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Error500()
+        public ActionResult Error500(string url = "")
         {
             Response.StatusCode = 500;
 

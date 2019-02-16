@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Why It Works";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@RenderPage("../Account/Login.cshtml")
+@RenderPage("../Account/Register.cshtml")
+<section style="padding: 50px 0;">
+    <div class="container">
+        <div class="row block">
+            <div class="col-lg-9">
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item">Text Page</li>
+                </ul>
+                <h1>Why it works?</h1>
+                <p></p>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center block">
+            <div class="col-lg-6 image mb-2"><img src="~/Content/img/pifagor2.jpg" alt="..." class="img-fluid"></div>
+            <div class="col-lg-6 text">
+                <h3>What is described by Pythagorean Square?</h3>
+                <p>Pythagorean square or "Psychomatrix" gives a chcracteristic according to the date of birth. It was developed by Pythagoras in the 5th century BC and was developed by his followers. The basic idea of psychomatrix is that the date of birth has a certain combination of numbers, with the help of which the human psychological type can be described. Each number from 1 to 9 symbolizes a certain quality and depending on the frequency of repetitions strengthens them.</p>
+            </div>
+        </div>
+        <div class="row d-flex align-items-center block">
+            <div class="col-lg-6 text text-right order-2 order-lg-1">
+                <h3>Meaning of Psychomatrix Cells</h3>
+                <p>
+                    Each separate cell in the square of Pythagoras carries information about a person.
+                    The numeric value of the cell corresponds to an absolutely definite quantitative and, accordingly, qualitative indicator implying certain degree of intensity of a particular personal characteristic.
+                    By comparing the cell indicators, one can obtain comprehensive information about what an individual in question is, both as a person and as a social unit. Thus eliminating the chance of error while assessing their potential, one can avoid a whole lot of problems, which inevitably (and often) occur in situations when someone is asked of something they are not capable of providing.
+                </p>
+            </div>
+            <div class="col-lg-6 image order-1 order-lg-2 my-3"><img src="~/Content/img/pifagorsqr.jpg" alt="..." class="img-fluid"></div>
+        </div>
+    </div>
+</section>

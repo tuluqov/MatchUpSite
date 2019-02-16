@@ -71,7 +71,8 @@ namespace MatchUp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                ModelState.AddModelError("", "Error validate");
+                return HttpNotFound();
             }
 
             // Сбои при входе не приводят к блокированию учетной записи
@@ -84,7 +85,7 @@ namespace MatchUp.Controllers
                     return RedirectToLocal(returnUrl);
                 default:
                     ModelState.AddModelError("", "Login error");
-                    return View(model);
+                    return HttpNotFound();
             }
         }
 
@@ -137,7 +138,7 @@ namespace MatchUp.Controllers
             }
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
-            return View(model);
+            return HttpNotFound();
         }
 
         // POST: /Account/ExternalLogin

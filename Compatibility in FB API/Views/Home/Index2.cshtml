@@ -1,0 +1,378 @@
+﻿
+@{
+    ViewBag.Title = "MatchUp";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en-us" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>MatchUp</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KHNBSHN');</script>
+    <!-- End Google Tag Manager -->
+    <!-- ============== Resources style ============== -->
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <!-- Modernizr runs quickly on page load to detect features -->
+    <script src="~/Scripts/Site/modernizr.custom.js"></script>
+</head>
+
+<body onload="start()" onresize="resize()" onorientationchange="resize()">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KHNBSHN"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- Page preloader -->
+    <div id="loading">
+        <div id="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Star Wars Canvas -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Overlay -->
+    <div class="global-overlay">
+        <div class="overlay skew-part"></div>
+    </div>
+
+    <!-- START - Home/Left Part -->
+    <section id="left-side">
+
+        <!-- Your logo -->
+        <img src="~/Content/img/MatchUpLogo.png" alt="" class="brand-logo" />
+
+        <div class="content">
+            <h1 class="text-intro opacity-0" id="main-text"></h1>
+
+            <h2 class="text-intro opacity-0">
+                Try Psychomatrix (Pythagorean Square) to check compatibility with loved ones, friends, and colleagues.
+            </h2>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" id="open-more-info" data-target="right-side" class="light-btn text-intro opacity-03 mobile-none">More Informations</a>
+                    </li>
+                    <li>
+                        <a href="#" data-dialog="signupdialog" class="action-btn trigger text-intro opacity-03 mobile-margin" onclick="document.getElementById('signupdialog').classList.add('dialog--open');">Sign up free!</a>
+                    </li>
+                    <li>
+                        <a href="#" class="light-btn text-intro opacity-03" onclick="document.getElementById('signindialog').classList.add('dialog--open');" style="border: 2px solid transparent;">Sign in</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+    <!-- END - Home/Left Part -->
+    <!-- START - More Informations/Right Part -->
+    <section id="right-side" class="hide-right">
+
+        <div class="content">
+
+            <h3>How it works?</h3>
+            <p></p>
+            <br><br>
+            <div class="photo-line">
+
+                <div class="my-gallery row" itemscope itemtype="http://schema.org/ImageGallery">
+
+                    <!-- Item -->
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col-12 col-lg-6">
+                        <!-- Picture's description below this one -->
+                        <figcaption itemprop="caption description">
+                            <div class="photo-details">
+                                <h4>1 step</h4>
+                                <span class="border"></span>
+                                <p>You enter your date of birth</p>
+                            </div>
+                        </figcaption>
+
+                    </figure>
+
+                    <!-- Item -->
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col-12 col-lg-6">
+                        <!-- Picture's description below this one -->
+                        <figcaption itemprop="caption description">
+
+                            <div class="photo-details">
+                                <h4>2 step</h4>
+                                <span class="border"></span>
+                                <p>Our site calculates your psychomatrix by the method of Pythagoras</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+
+                    <!-- Item -->
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col-12 col-lg-6">
+                        <!-- Picture's description below this one -->
+                        <figcaption itemprop="caption description">
+                            <div class="photo-details">
+                                <h4>3 step</h4>
+                                <span class="border"></span>
+                                <p>You will learn very interesting things about yourself :)</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <!-- Item -->
+                    @*<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col-12 col-lg-6">
+
+                            <figcaption itemprop="caption description">
+                                <div class="photo-details">
+                                    <h4>In einem Kokon</h4>
+                                    <span class="border"></span>
+                                    <p>This is what I love, and can't stop loving! I'm told to enjoy every moment, every hour, every minute.</p>
+                                </div>
+                            </figcaption>
+                        </figure>*@
+                </div>
+            </div>
+            <span class="separator"></span>
+
+            <h3>Why it works?</h3>
+
+            <p>
+                Pythagorean square or "Psychomatrix" gives a chcracteristic according to the date of birth.
+                It was developed by Pythagoras in the 5th century BC and was developed by his followers.
+                The basic idea of psychomatrix is that the date of birth has a certain combination of numbers,
+                with the help of which the human psychological type can be described. Each number from 1 to 9
+                symbolizes a certain quality and depending on the frequency of repetitions strengthens them.
+            </p>
+
+            <img src="~/Content/img/pifagor.jpg" />
+
+            <span class="separator"></span>
+
+            <div class="photo-line">
+                <h3>Happy Clients</h3>
+
+                <div class="my-gallery row" itemscope itemtype="http://schema.org/ImageGallery">
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col-12 col-lg-6">
+
+                        <img src="~/Content/img/avatar-3.jpg" class="img-stars" />
+
+                        <figcaption itemprop="caption description">
+                            <div class="photo-details">
+                                <h4>Jessica Watson</h4>
+                                <span class="border"></span>
+                                <p>Pythagoras square and Psychomatrix has changed my life. I was skeptical at first, but when I tried, I was very surprised. This is an incredible tool for understanding yourself and your loved ones.</p>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 pt-2 text-left">
+                                        <img class="img-stars" src="~/Content/img/stars1.png" alt="Alternate Text" />
+                                    </div>
+                                    <div class="col-12 col-md-6 text-right">
+                                        <img class="img-logo" src="~/Content/img/yelp.png" alt="Alternate Text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col-12 col-lg-6">
+
+                        <img src="~/Content/img/avatar-5.jpg" class="img-stars" />
+
+                        <figcaption itemprop="caption description">
+                            <div class="photo-details">
+                                <h4>Sarrah Wood</h4>
+                                <span class="border"></span>
+                                <p>This is a great tool to check your friends and first of all yourself. I changed my attitude towards life and my environment after using Pythagorean Square.</p>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 pt-2 text-left">
+                                        <img class="img-stars" src="~/Content/img/stars2.png" alt="Alternate Text" />
+                                    </div>
+                                    <div class="col-12 col-md-6 text-right">
+                                        <img class="img-logo" src="~/Content/img/yelp.png" alt="Alternate Text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+            <!-- Answer for the contact form is displayed in the next div, do not remove it. -->
+            <div id="block-answer">
+
+                <div id="answer"></div>
+
+            </div>
+
+            <div class="info-contact row">
+
+                <div class="col-xs-12 col-sm-4 col-lg-4 item-map">
+                    <div class="contact-item">
+                        <i class="icon ion-ios-email"></i>
+                        <p>
+                            <a href="mailto:matchup.webapp@gmail.com">matchup.webapp@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- /. Content -->
+
+        <footer>
+            <p>© MatchUp - Made for awesome people</p>
+        </footer>
+    </section>
+
+
+    <button id="close-more-info" class="hide-close"><i class="fas fa-times"></i></button>
+
+    @RenderPage("../Account/Register.cshtml")
+    @RenderPage("../Account/Login.cshtml")
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="pswp__bg"></div>
+
+        <div class="pswp__scroll-wrap">
+
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <!--  Controls are self-explanatory. Order can be changed. -->
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/Site/jquery.min.js"></script>
+    <script src="~/Scripts/Site/jquery.easings.min.js"></script>
+    <script src="~/Scripts/Site/bootstrap.min.js"></script>
+
+    <!-- Accelerated JavaScript animation JS file -->
+    <script src="~/Scripts/Site/velocity.min.js"></script>
+
+    <!-- Accelerated JavaScript animation UI JS file -->
+    <script src="~/Scripts/Site/velocity.ui.min.js"></script>
+
+    <!-- Newsletter plugin -->
+    <script src="~/Scripts/Site/notifyMe.js"></script>
+
+    <!-- Contact form plugin -->
+    <script src="~/Scripts/Site/contact-me.js"></script>
+
+    <!-- Star Wars plugin -->
+    <script src="~/Scripts/Site/starfield.js"></script>
+
+    <!-- Scroll plugin -->
+    <script src="~/Scripts/Site/jquery.mousewheel.js"></script>
+
+    <!-- Custom Scrollbar plugin -->
+    <script src="~/Scripts/Site/jquery.mCustomScrollbar.js"></script>
+
+    <!-- Popup Newsletter Form -->
+    <script src="~/Scripts/Site/classie.js"></script>
+    <script src="~/Scripts/Site/dialogFx.js"></script>
+
+    <!-- PhotoSwipe Core JS file -->
+    <script src="~/Scripts/Site/photoswipe.js"></script>
+
+    <!-- PhotoSwipe UI JS file -->
+    <script src="~/Scripts/Site/photoswipe-ui-default.js"></script>
+
+    <!-- Main JS File -->
+    <script src="~/Scripts/Site/main.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        function OnSuccess(data) {
+            document.location.href = "/";
+        }
+        function OnFailure(request, error) {
+            $("#validate-message").html("Wrong login or password");
+        }
+        function OnFailureRegister(request, error) {
+            $("#validate-message-register").html("Wrong data!");
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            window.dataLayer = window.dataLayer || [];
+            var form = document.getElementsByName('signupform');
+            if (form[0].addEventListener) {
+                form[0].addEventListener('submit',
+                    function (e) {
+                        dataLayer.push({
+                            'event': 'signupform'
+                        });
+                    });
+            }
+        })
+    </script>
+
+
+    <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
+
+</body>
+
+</html>

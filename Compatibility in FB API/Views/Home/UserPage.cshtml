@@ -123,23 +123,39 @@
     {
         <h2>Similar people</h2>
         <div class="border-bottom mt-2 mb-3"></div>
-        <div class="row text-center align-content-center mb-3">
-            @foreach (UserViewModel famouse in Model.SameStars[0])
-            {
-                <div class="col">
-                    <a href="~/home/userpage/@famouse.Id?isFamouse=true">
-                        <img src="@famouse.PhotoUrl" class="round">
-                        <h6 class="mt-1 text-primary">@famouse.Name</h6>
-                        <p class="text-black-50">@famouse.Details</p>
-                    </a>
-                </div>
-            }
-        </div>
-        <div class="row">
-            <div class="col text-right">
-                <a class="" href="#moreCelebritiesModal" data-toggle="modal" data target="#moreCelebritiesModal">More celebties...</a>
+
+        if (Model.SameStars[0].Any())
+        {
+            <div class="row text-center align-content-center mb-3">
+                @foreach (UserViewModel famouse in Model.SameStars[0])
+                {
+                    <div class="col">
+                        <a href="~/home/userpage/@famouse.Id?isFamouse=true">
+                            <img src="@famouse.PhotoUrl" class="round">
+                            <h6 class="mt-1 text-primary">@famouse.Name</h6>
+                            <p class="text-black-50">@famouse.Details</p>
+                        </a>
+                    </div>
+                }
             </div>
-        </div>
+            <div class="row">
+                <div class="col text-right">
+                    <a class="" href="#moreCelebritiesModal" data-toggle="modal" data target="#moreCelebritiesModal">More celebties...</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card border-light mt-2 shadow bg-white rounded">
+
+                <div class="card-body">
+                    <div class="card-text">
+                        There is no person in our database with such a Psychomatrix! You are a very unique person!
+                        <br />
+                    </div>
+                </div>
+            </div>
+        }
     }
 
     <h2>Strengths</h2>
@@ -247,7 +263,7 @@
         }
     }
 
-   
+
 
     @*<div class="mt-5 pt-2">
             <h2>Дополнительная информация</h2>

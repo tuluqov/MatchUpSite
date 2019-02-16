@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap.css">
     <link rel="stylesheet" href="~/Content/Site.css">
 
-    <link rel="stylesheet" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    @*<link rel="stylesheet" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">*@
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="~/Content/vendor/font-awesome/css/font-awesome.min.css">
     <!-- Custom Font Icons CSS-->
@@ -71,7 +71,7 @@
                             @Html.ActionLink("Sign out", "LogOff", "Account", null, new { @class = "nav-link" })
                         </li>
                     }
-                    else
+                    @*else
                     {
                         <li class="nav-item">
                             <!-- Button trigger modal-->
@@ -81,7 +81,7 @@
                             <!-- Button trigger modal-->
                             <a href="#" data-toggle="modal" data-target="#signupModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign up</a>
                         </li>
-                    }
+                    }*@
                 </ul>
             </div>
         </nav>
@@ -90,24 +90,24 @@
     <div id="scrollTop">
         <div class="d-flex align-items-center justify-content-end"><i class="fa fa-long-arrow-up"></i>To Top</div>
     </div>
-    <footer class="main-footer">
+    <footer class="main-footer bg-gray mt-2">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                @*<div class="col-lg-3 col-md-6">
                     <a href="/" class="brand text-primary">MatchUp</a>
                     <ul class="contact-info list-unstyled">
-                        <li><a href="mailto:matchup.webapp@gmail.com">matchup.webapp@gmail.com</a></li>
+                        <li><a href="mailto:matchup.webapp@gmail.com" class="text-primary">matchup.webapp@gmail.com</a></li>
                     </ul>
-                </div>
+                </div>*@
                 <div class="col-lg-3 col-md-6">
                     <a href="/Person/AddPerson">
-                        <h5 class="text-primary">Add people</h5>
+                        <h5 class="text-primary">My people list</h5>
                     </a>
                     <p>Add new people to see their Psychomatrix (family, friends, colleagues)</p>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <a href="/Star/Stars">
-                        <h5 class="text-primary">Search</h5>
+                        <h5 class="text-primary">Similar celebrities</h5>
                     </a>
                     <p>Search among 100,000 celebrities by name and compare yourself with them</p>
                 </div>

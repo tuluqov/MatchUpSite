@@ -1,5 +1,13 @@
 ﻿.round {
-    width: 100px; height: 100px; /* Ширина и высота */
+    width: 100px; 
+    height: 100px; /* Ширина и высота */
+    border-radius: 50%; /* Превращаем в круг */
+    background-size: auto 300px; /* Высота фотографии равна высоте элемента */
+}
+
+.round-80 {
+    width: 80px;
+    height: 80px; /* Ширина и высота */
     border-radius: 50%; /* Превращаем в круг */
     background-size: auto 300px; /* Высота фотографии равна высоте элемента */
 }
@@ -110,4 +118,62 @@
 
 .btn {
     padding: 0.6rem 1rem !important;
+}
+
+.main {
+    background-image: url("img/girl4.jpg");
+    height: 90vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+    main {
+        left: 50%;
+        margin-left: -512px; /* 50% */
+    }
+}
+
+.img-40 {
+    width: 40%;
+    height: auto;
+}
+
+.img-logo {
+    width: 50% !important;
+    height: auto;
+}
+
+.img-stars {
+    width: 100%;
+    height: auto;
+}
+
+input[type="date"]:before {
+    color: lightgray;
+    content: attr(placeholder);
+}
+
+input[type="date"].full:before {
+    color: black;
+    content: "" !important;
+}
+
+@media only screen and (max-width: 480px)
+{
+    .mobile-none {
+        display: none;
+    }
+
+    .mobile-margin {
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: 768px)
+{
+    .mobile-none {
+        display: none;
+    }
 }
