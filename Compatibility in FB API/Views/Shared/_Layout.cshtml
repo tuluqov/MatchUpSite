@@ -49,6 +49,10 @@
                 height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
+    <!-- FB comment manager-->
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=200830110837342&autoLogAppEvents=1"></script>
+    <!-- End FB comment manager-->
     <!-- navbar-->
     <header class="header">
         <nav class="navbar navbar-expand-lg fixed-top">
@@ -72,21 +76,30 @@
                         </li>
                     }
                     @*else
-                    {
-                        <li class="nav-item">
-                            <!-- Button trigger modal-->
-                            <a href="#" data-toggle="modal" data-target="#signinModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
-                        </li>
-                        <li class="nav-item">
-                            <!-- Button trigger modal-->
-                            <a href="#" data-toggle="modal" data-target="#signupModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign up</a>
-                        </li>
-                    }*@
+                        {
+                            <li class="nav-item">
+                                <!-- Button trigger modal-->
+                                <a href="#" data-toggle="modal" data-target="#signinModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <!-- Button trigger modal-->
+                                <a href="#" data-toggle="modal" data-target="#signupModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign up</a>
+                            </li>
+                        }*@
                 </ul>
             </div>
         </nav>
     </header>
     @RenderBody()
+    <div class="container border-top pt-2 mt-4">
+        <div class="row">
+            <div class="col">
+                <h5>Add comment if you like your Psychomatrix</h5>
+
+            </div>
+        </div>
+        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5" data-width="100%"></div>
+    </div>
     <div id="scrollTop">
         <div class="d-flex align-items-center justify-content-end"><i class="fa fa-long-arrow-up"></i>To Top</div>
     </div>
@@ -94,11 +107,11 @@
         <div class="container">
             <div class="row">
                 @*<div class="col-lg-3 col-md-6">
-                    <a href="/" class="brand text-primary">MatchUp</a>
-                    <ul class="contact-info list-unstyled">
-                        <li><a href="mailto:matchup.webapp@gmail.com" class="text-primary">matchup.webapp@gmail.com</a></li>
-                    </ul>
-                </div>*@
+                        <a href="/" class="brand text-primary">MatchUp</a>
+                        <ul class="contact-info list-unstyled">
+                            <li><a href="mailto:matchup.webapp@gmail.com" class="text-primary">matchup.webapp@gmail.com</a></li>
+                        </ul>
+                    </div>*@
                 <div class="col-lg-3 col-md-6">
                     <a href="/Person/AddPerson">
                         <h5 class="text-primary">My people list</h5>
