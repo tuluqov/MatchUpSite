@@ -177,3 +177,40 @@ input[type="date"].full:before {
         display: none;
     }
 }
+
+
+/*Мигающий текст*/
+.blink {
+    -webkit-animation: blink 2s linear infinite;
+    animation: blink 2s linear infinite;
+    
+    color: black;
+}
+
+@-webkit-keyframes blink {
+    0% {
+        color: black;
+    }
+
+    50% {
+        color: white;
+    }
+
+    100% {
+        color: black;
+    }
+}
+
+@keyframes blink {
+    0% {
+        color: black;
+    }
+
+    50% {
+        color: white;
+    }
+
+    100% {
+        color: black;
+    }
+}
