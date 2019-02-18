@@ -135,8 +135,8 @@
     }
 }
 
-.img-40 {
-    width: 40%;
+.img-35 {
+    width: 35%;
     height: auto;
 }
 
@@ -168,6 +168,11 @@ input[type="date"].full:before {
 
     .mobile-margin {
         margin-bottom: 5px;
+    }
+
+    .img-35 {
+        width: 60%;
+        height: auto;
     }
 }
 

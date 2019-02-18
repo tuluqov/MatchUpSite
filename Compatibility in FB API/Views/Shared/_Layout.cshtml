@@ -56,7 +56,13 @@
     <!-- navbar-->
     <header class="header">
         <nav class="navbar navbar-expand-lg fixed-top">
-            <a href="/" class="navbar-brand">Match⭕Up</a>
+            @*<a href="/" class="navbar-brand">Match⭕Up</a>*@
+            <div class="navbar-brand col">
+                <a href="/">
+                    <img class="d-inline-block img-35" src="~/Content/img/MatchUpLogoMin.png" />
+                </a>
+            </div>
+
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
@@ -76,16 +82,16 @@
                         </li>
                     }
                     @*else
-                        {
-                            <li class="nav-item">
-                                <!-- Button trigger modal-->
-                                <a href="#" data-toggle="modal" data-target="#signinModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
-                            </li>
-                            <li class="nav-item">
-                                <!-- Button trigger modal-->
-                                <a href="#" data-toggle="modal" data-target="#signupModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign up</a>
-                            </li>
-                        }*@
+                {
+                    <li class="nav-item">
+                        <!-- Button trigger modal-->
+                        <a href="#" data-toggle="modal" data-target="#signinModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Button trigger modal-->
+                        <a href="#" data-toggle="modal" data-target="#signupModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient m-1">Sign up</a>
+                    </li>
+                }*@
                 </ul>
             </div>
         </nav>

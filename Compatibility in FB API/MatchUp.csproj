@@ -273,6 +273,7 @@
     <Content Include="Content\icons-reference\fonts\landy.svg" />
     <Content Include="Content\icons-reference\icons-reference.html" />
     <Content Include="Content\icons-reference\styles.css" />
+    <Content Include="Content\img\almaz.png" />
     <Content Include="Content\img\ava.png" />
     <Content Include="Content\img\avatar-3.jpg" />
     <Content Include="Content\img\avatar-5.jpg" />
